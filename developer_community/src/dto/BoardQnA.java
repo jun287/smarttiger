@@ -6,8 +6,10 @@ public class BoardQnA {
 	private String boardQnAtitle;
 	private String boardQnAContent;
 	private String boardQnADate;
-	private int boardQnAhits;
+	private int boardQnAhits = 0;
 	private String boardQnAChoose;
+	private String boardQnACategory;
+	
 	public int getBoardQnANumber() {
 		return boardQnANumber;
 	}
@@ -57,12 +59,22 @@ public class BoardQnA {
 		this.boardQnAChoose = boardQnAChoose;
 		System.out.println(boardQnAChoose+"<--setBoardQnAChoose");
 	}
+	
+	public String getBoardQnACategory() {
+		return boardQnACategory;
+	}
+	public void setBoardQnACategory(String boardQnACategory) {
+		this.boardQnACategory = boardQnACategory;
+		System.out.println(boardQnACategory+"<--setBoardQnACategory");
+	}
 	@Override
 	public String toString() {
 		return "BoardQnA [boardQnANumber=" + boardQnANumber + ", memberId=" + memberId + ", boardQnAtitle="
 				+ boardQnAtitle + ", boardQnAContent=" + boardQnAContent + ", boardQnADate=" + boardQnADate
-				+ ", boardQnAhits=" + boardQnAhits + ", boardQnAChoose=" + boardQnAChoose + "]";
+				+ ", boardQnAhits=" + boardQnAhits + ", boardQnAChoose=" + boardQnAChoose + ", boardQnACategory="
+				+ boardQnACategory + "]";
 	}
+	
 	
 }	
 
