@@ -18,7 +18,7 @@
 				<nav id="top_menu">
 					<a href="<%= request.getContextPath() %>/index.jsp">HOME</a> | 
 				 	LOGIN |
-				  	JOIN | 
+				  	JOIN | sss
 				  	NOTICE
 				</nav>
 				<nav id="main_menu">
