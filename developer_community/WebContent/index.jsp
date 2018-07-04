@@ -8,15 +8,16 @@
 	</head>
 	<body>
 		
-		
+		<div id="wrap">
 			<header id="header">
 				<img id="logo"src="./logo.jpg">
 				<input type="text" id="search">
 				<input type="button" id="button" value="°Ë»ö">
-			</header>
-			<nav id="nav">
+				<nav id="nav">
 			
-			</nav>
+				</nav>
+			</header>
+		<!-- 
 			<aside id="aside">
 				<article id="login">
 				
@@ -27,11 +28,11 @@
 			</aside>
 			<section id="section">
 			
-			</section>
+			</section> -->
 			
-	
-		<footer id="footer">
+		</div>
+		<!-- <footer id="footer">
 			
-		</footer>
+		</footer> -->
 	</body>
 </html>

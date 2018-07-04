@@ -15,6 +15,7 @@
 	display:inline;
 	width:300px;
 	height:200px;
+	clear: both;
 }
 #wrap #search{
 	display:inline;
