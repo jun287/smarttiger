@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>Insert title here</title>
+		<title>회원가입</title>
 	</head>
 	<body>
-	<h1>로그인프로</h1>
+	회원가입
 	</body>
 </html>
