@@ -117,5 +117,22 @@ CREATE TABLE `activity` (
 COLLATE='euckr_korean_ci'
 ENGINE=InnoDB;
 
+9) goods table 생성문장
+CREATE TABLE `good` (
+	`goods_code` INT(10) NOT NULL AUTO_INCREMENT,
+	`id` VARCHAR(50) NULL DEFAULT NULL,
+	`goods_title` VARCHAR(50) NULL DEFAULT NULL,
+	`goods_info` VARCHAR(50) NULL DEFAULT NULL,
+	`goods_price` INT(10) NULL DEFAULT NULL,
+	`goods_date` VARCHAR(50) NULL DEFAULT NULL,
+	`goods_img` VARCHAR(50) NULL DEFAULT NULL,
+	`goods_inquiry` INT(10) UNSIGNED NULL DEFAULT '0',
+	PRIMARY KEY (`goods_code`),
+	INDEX `FK_good_member` (`id`),
+	CONSTRAINT `FK_good_member` FOREIGN KEY (`id`) REFERENCES `member` (`id`)
+)
+COLLATE='euckr_korean_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=8;
 
 

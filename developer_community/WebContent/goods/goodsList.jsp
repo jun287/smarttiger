@@ -5,33 +5,85 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-	#goodList{
+	#goodListWrap{
+		display:inline-block;
+	    width: 1200px;
+	    margin: 0 2% 30px 0;
+	    float: left;
+	}
+	#goodListWrap #goodList{
 		display:inline-block;
 		background-color: green;
-		width: 300px;
-		height: 100px;
-		
+	    width: 22%;
+	    height: 242px;
+	    margin: 0 2% 30px 0;
+	    float: left;
 	}
 	#goodList #img{
 		background-color: red;
-		width: 300px;
+		width: 200px;
 		height: 30px;
 	}
 </style>
 </head>
 <body>
-	
-	<div id="goodList">
-		<div id="img">
-		
+	<div id="goodListWrap">
+		<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
+		</div>
+			<div id="goodList">
+			<div id="img">
+			
+			</div>
+			<p>MicroSoft office</p>
+			<p>가격:100,000</p>
 		</div>
 	</div>
-	<div id="goodList">
-		
-	</div>
-	<div id="goodList">
-		
-	</div>
-	
 </body>
 </html>
