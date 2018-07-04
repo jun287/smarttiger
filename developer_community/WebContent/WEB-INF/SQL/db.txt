@@ -23,7 +23,7 @@ grant select,insert,update,delete,create,drop,alter on developer_community.* to 
 
 CREATE TABLE `member` (
 	`id` VARCHAR(50) NOT NULL,
-	`password` VARCHAR(50) NOT NULL,
+	`pw` VARCHAR(50) NOT NULL,
 	`name` VARCHAR(50) NOT NULL,
 	`level` VARCHAR(50) NOT NULL DEFAULT '초급개발자',
 	`email` VARCHAR(50) NOT NULL,
@@ -68,7 +68,7 @@ COLLATE='euckr_korean_ci'
 ENGINE=InnoDB;
 
 
-6) boardforumqna table 생성문장
+6) boardqna table 생성문장
 
 CREATE TABLE `boardqna` (
 	`boardqna_no` INT(10) NOT NULL AUTO_INCREMENT,
@@ -77,11 +77,16 @@ CREATE TABLE `boardqna` (
 	`boardqna_content` TEXT NOT NULL,
 	`boardqna_date` VARCHAR(50) NOT NULL,
 	`hits` INT(10) NOT NULL DEFAULT '0',
+	`choose` VARCHAR(50) NOT NULL DEFAULT 'N',
+	`boardqna_category` VARCHAR(50) NOT NULL,
 	PRIMARY KEY (`boardqna_no`),
+	INDEX `FKmember` (`member_id`),
 	CONSTRAINT `FKmember` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
 )
 COLLATE='euckr_korean_ci'
 ENGINE=InnoDB;
+
+
 
 7) boardqna_comment table 생성문장
 
@@ -98,6 +103,19 @@ CREATE TABLE `boardqna_comment` (
 COLLATE='euckr_korean_ci'
 ENGINE=InnoDB;
 
+8) activity table 생성문장
+
+CREATE TABLE `activity` (
+	`member_id` VARCHAR(50) NOT NULL,
+	`total_question` INT(10) NOT NULL DEFAULT '0',
+	`total_answer` INT(10) NOT NULL DEFAULT '0',
+	`choose_answer` INT(10) NOT NULL DEFAULT '0',
+	`activity_score` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`member_id`),
+	CONSTRAINT `FK_boardqna_activity_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+)
+COLLATE='euckr_korean_ci'
+ENGINE=InnoDB;
 
 
 
