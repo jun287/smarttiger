@@ -7,7 +7,6 @@ public class BoardQnA {
 	private String boardQnAContent;
 	private String boardQnADate;
 	private int boardQnAhits = 0;
-	private String boardQnAChoose;
 	private String boardQnACategory;
 	
 	public int getBoardQnANumber() {
@@ -52,14 +51,6 @@ public class BoardQnA {
 		this.boardQnAhits = boardQnAhits;
 		System.out.println(boardQnAhits+"<--setBoardQnAhits");
 	}
-	public String getBoardQnAChoose() {
-		return boardQnAChoose;
-	}
-	public void setBoardQnAChoose(String boardQnAChoose) {
-		this.boardQnAChoose = boardQnAChoose;
-		System.out.println(boardQnAChoose+"<--setBoardQnAChoose");
-	}
-	
 	public String getBoardQnACategory() {
 		return boardQnACategory;
 	}
@@ -71,9 +62,9 @@ public class BoardQnA {
 	public String toString() {
 		return "BoardQnA [boardQnANumber=" + boardQnANumber + ", memberId=" + memberId + ", boardQnAtitle="
 				+ boardQnAtitle + ", boardQnAContent=" + boardQnAContent + ", boardQnADate=" + boardQnADate
-				+ ", boardQnAhits=" + boardQnAhits + ", boardQnAChoose=" + boardQnAChoose + ", boardQnACategory="
-				+ boardQnACategory + "]";
+				+ ", boardQnAhits=" + boardQnAhits + ", boardQnACategory=" + boardQnACategory + "]";
 	}
+	
 	
 	
 }	

@@ -12,6 +12,6 @@
 	boardQnADao.insertBoardQnA(boardQnA);
 	ActivityDao activityDao = new ActivityDao();
 	activityDao.questionFromUpdateActivity(activity);
-	response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAView.jsp?boardQnANumber="+boardQnA.getBoardQnANumber());
-	//작성글로 이동.
+	response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
+	//리스트로 이동
 %>

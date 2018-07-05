@@ -1,5 +1,11 @@
 <!-- 28기 이원상 2018. 7. 4(수) boardQnAWriteForm.jsp -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%
+	request.setCharacterEncoding("EUC-KR");
+	String sessionId = (String)session.getAttribute("sessionId");
+	String sessionLevel = (String)session.getAttribute("sessionLevel");
+	String sessionName = (String)session.getAttribute("sessionName");
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +17,7 @@
 			<form action="<%=request.getContextPath()%>/boardQnA/boardQnAWritePro.jsp" method="post">
 				<div>	
 					<label for="memberId">작성자</label>
-					<input type="text" id="memberId" name="memberId" value="">
+					<input type="text" id="memberId" name="memberId" value="<%=sessionId%>" readonly>
 				</div>
 				<div>	
 					<label for="boardQnAtitle">글 제목</label>
