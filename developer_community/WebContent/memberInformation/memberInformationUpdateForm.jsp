@@ -38,6 +38,7 @@
 								<ul class="cols">
 									<li class="col1">아이디 :</li> 
 									<li class="col2" ><%=member.getId()%></li>
+									<input type="hidden" name="id" value="<%=member.getId()%>">
 								</ul>
 							</li>
 							<li>
@@ -56,6 +57,7 @@
 								<ul class="cols">
 									<li class="col1">권한 :</li> 
 									<li class="col2"><%=member.getLevel()%></li>
+									<input type="hidden" name="level" value="<%=member.getLevel()%>">
 								</ul>
 							</li>
 							<li>
@@ -84,6 +86,7 @@
 				}else{
 			%>			
 					<script type="text/javascript">
+						alert('로그인 해주세요.');
 						location.href='<%= request.getContextPath()%>/login/loginForm.jsp';
 					</script>
 			<%
