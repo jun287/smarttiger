@@ -3,7 +3,6 @@
 <%@ page import = "dao.BoardQnADao"%>
 <%@ page import = "dto.BoardQnA"%>
 <%@ page import = "java.util.ArrayList" %>
-<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -70,6 +69,11 @@
 						<th>카테고리</th><th>글 번호</th><th>글 제목</th><th>글쓴이</th><th>작성날짜</th><th>조회수</th>
 					</tr>
 <%
+	request.setCharacterEncoding("EUC-KR");
+	String sessionId = (String)session.getAttribute("sessionId");
+	String sessionLevel = (String)session.getAttribute("sessionLevel");
+	String sessionName = (String)session.getAttribute("sessionName");
+	
 	String sk = (request.getParameter("sk")!=null)?request.getParameter("sk"):"";
 	String sv = (request.getParameter("sv")!= null && !request.getParameter("sv").equals(""))?("%"+request.getParameter("sv")+"%"):"";
 	System.out.println(sk+"<--sk");
@@ -126,9 +130,14 @@
 %>				
 				</div>
 				<div id="list"><a href="<%=request.getContextPath() %>/boardQnA/boardQnAList.jsp">목록</a></div>
+<%
+	if(sessionId != null){
+%>		
 				<div id="write"><a href="<%=request.getContextPath() %>/boardQnA/boardQnAWriteForm.jsp">글쓰기&nbsp;&nbsp;&nbsp;</a></div>
+<%		
+	}
+%>		
 			</div>
-		<%@include file="/module/sidebar.jsp" %>
 		<%@include file="/module/footer.jsp" %>
 		</div>
 	</body>

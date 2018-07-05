@@ -1,4 +1,4 @@
-<!-- 28기 이원상 2018. 7. 5(목) boardQnAView.jsp -->
+<!-- 28기 이원상 2018. 7. 5(목) boardQnACommentWriteForm.jsp -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "dao.BoardQnADao"%>
 <%@ page import = "dto.BoardQnA"%>
@@ -40,7 +40,7 @@
 	BoardQnA boardQnA = new BoardQnA();
 	boardQnA.setBoardQnANumber(boardQnANumber);
 	boardQnA = boardQnADao.selectBoardQnA(boardQnA);
-%>			
+%>						
 				<table>
 					<tr>
 						<th>글번호</th>
@@ -63,25 +63,10 @@
 					<span>질문 내용</span><br>
 					<%=boardQnA.getBoardQnAContent() %>
 				</div>
-<%
-	if(sessionId == null){	
-%>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
-<%		
-	}else if(sessionId.equals(boardQnA.getMemberId())){
-%>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAUpdateForm.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber()%>">| 수정 | </a></div>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnADeletePro.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber()%>">| 삭제 | </a></div>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
-<%		
-	}else{
-		boardQnADao.updateBoardQnA(boardQnA);			// 조회수 증가 메소드, 본인이 아닌 타인이 읽었을때만 적용
-%>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnACommentWriteForm.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber()%>">| 답글작성 | </a></div>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
-<%		
-	}	
-%>					
+				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>		
+			</div>
+			<div>
+				답글작성해야돼 폼여기다가 만들어
 			</div>
 			<%@include file="/module/footer.jsp" %>
 		</div>			

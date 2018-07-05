@@ -1,3 +1,4 @@
+// 28기 2018. 7. 5(목) 이원상 BoardQnADao.java
 package dao;
 import driverdb.DriverDB;
 import dto.BoardQnA;
@@ -34,7 +35,7 @@ public class BoardQnADao {
 	}
 	/*
 	메소드 설명	
-	1. 용도 : 전체 QnA게시판글의 전체글을 조회하는 메소드(DB BoardQnA테이블 전체 행의 수를 조회)
+	1. 용도 : 전체 QnA게시판글의 전체글의 수를 조회하는 메소드(DB BoardQnA테이블 전체 행의 수를 조회)
 	2. 매개변수 : int pagePerRow(페이지당 볼 행의 수)
 	3. 리턴값 : int lastPage(총 행의 수 / 페이지당 볼 행의 수를 나눠 나머지값이 0일경우 그대로, 0이 아닐경우 last page +1)
 	*/
@@ -50,7 +51,10 @@ public class BoardQnADao {
 		lastPage = totalRow/pagePerRow;
 		if(totalRow%pagePerRow!=0){
 			lastPage++;
-		}		
+		}
+		resultSet.close();
+		preparedStatement.close();
+		connection.close();
 		return lastPage;
 	}
 	/*
@@ -159,7 +163,83 @@ public class BoardQnADao {
 			boardQnA.setBoardQnAhits(resultSet.getInt(6));
 			boardQnAList.add(boardQnA);
 		}
+		resultSet.close();
+		preparedStatement.close();
+		connection.close();
 		return boardQnAList;
+	}
+	/*
+	메소드 설명	
+	1. 용도 : 전체 QnA게시판글 중 한개의 글을 조회(DB BoardQnA테이블 1개 행 조회)
+	2. 매개변수 : BoardQnA boardQnA(BoardQnA클래스를 통해 생성된 참조값)
+	3. 리턴값 : BoardQnA boardQnA(BoardQnA클래스를 통해 생성된 참조값)
+	4. BoardQnA Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnANumber, String memberId, String boardQnAtitle, String boardQnAContent, String boardQnADate
+		int boardQnAhits, String boardQnACategory
+	*/
+	public BoardQnA selectBoardQnA(BoardQnA boardQnA) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "select boardqna_no,member_id,boardqna_title,boardqna_content,boardqna_date,hits,boardqna_category from boardqna where boardqna_no=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, boardQnA.getBoardQnANumber());
+		resultSet = preparedStatement.executeQuery();
+		resultSet.next();
+		boardQnA.setBoardQnANumber(resultSet.getInt(1));
+		boardQnA.setMemberId(resultSet.getString(2));
+		boardQnA.setBoardQnAtitle(resultSet.getString(3));
+		boardQnA.setBoardQnAContent(resultSet.getString(4));
+		boardQnA.setBoardQnADate(resultSet.getString(5));
+		boardQnA.setBoardQnAhits(resultSet.getInt(6));
+		boardQnA.setBoardQnACategory(resultSet.getString(7));
+		resultSet.close();
+		preparedStatement.close();
+		connection.close();
+		return boardQnA;
+	}
+	
+	/*
+	메소드 설명	
+	1. 용도 : QnA게시판글을 조회(열람)시 조회수(hits컬럼 증가)(DB BoardQnA테이블 1개 행 수정)
+	2. 매개변수 : BoardQnA boardQnA(BoardQnA클래스를 통해 생성된 참조값)
+	3. 리턴값 : void
+	4. BoardQnA Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnANumber, String memberId, String boardQnAtitle, String boardQnAContent, String boardQnADate
+		int boardQnAhits, String boardQnACategory
+	*/
+	public void updateBoardQnA(BoardQnA boardQnA) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "UPDATE boardqna SET hits=? WHERE boardqna_no=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, boardQnA.getBoardQnAhits()+1);
+		preparedStatement.setInt(2, boardQnA.getBoardQnANumber());
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		connection.close();
+	}
+	
+	/*
+	메소드 설명	
+	1. 용도 : QnA게시판글을 1개를 삭제하는 메소드(DB BoardQnA테이블 1개 행 삭제)
+	2. 매개변수 : int boardQnANumber(db테이블의 boardQnANumber안의 값)
+	3. 리턴값 : void
+	4. BoardQnA Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnANumber, String memberId, String boardQnAtitle, String boardQnAContent, String boardQnADate
+		int boardQnAhits, String boardQnACategory
+	*/
+	public void deleteBoardQnA(int boardQnANumber) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "DELETE FROM boardqna WHERE boardqna_no=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, boardQnANumber);
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		connection.close();
 	}
 
 	
