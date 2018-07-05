@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<%
-		
+			replace("\r\n","<br>");
 			System.out.println(Goods.getGoods_title()+"<--Goods.getTitle()");
 			System.out.println( Goods.getGoods_info()+"<--Goods.getComment()");
 			System.out.println(Goods.getGoods_price()+"<--Goods.getPrice()");

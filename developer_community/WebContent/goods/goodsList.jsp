@@ -110,42 +110,53 @@
 		margin: 12px 30px 0 50px;
 		font-size: 13px;
 	}	
+	#button{
+		margin-top:10px;
+		margin-right:150px;
+		float:right;
+	}
+	table {
+		margin-left: 100px;	
+	}
 </style>
 </head>
 <body>
 <div id="jb-container">
 <%@ include file="/module/header.jsp"%>
 	<div id="jb-content">
-	<table>
-		<tr>
-			<th id="title">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</tr>
-		<%
-			GoodsDao goodsDao=new GoodsDao();
-			ArrayList<Goods> result=goodsDao.selectGoodsList();
-			
-			for(int i=0;i<result.size();i++){
-				Goods resultgoods=result.get(i);
-		%>
+		<table>
 			<tr>
-				<td>
-					<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
-					<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
-				</td>
-				<td><%=resultgoods.getId() %></td>
-				<td><%=resultgoods.getGoods_date() %></td>
-				<td id="goods_inquiry"><%=resultgoods.getGoods_inquiry() %></td>
+				<th id="title">제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
 			</tr>
-		<%
-			}
-		%>
-	</table>
-	<div>
-		<input type="button" value="글쓰기">
-	</div>
+			<%
+				GoodsDao goodsDao=new GoodsDao();
+				ArrayList<Goods> result=goodsDao.selectGoodsList();
+				
+				for(int i=0;i<result.size();i++){
+					Goods resultgoods=result.get(i);
+			%>
+				<tr>
+					<td>
+						<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
+						<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+					</td>
+					<td><%=resultgoods.getId() %></td>
+					<td><%=resultgoods.getGoods_date() %></td>
+					<td id="goods_inquiry"><%=resultgoods.getGoods_inquiry() %></td>
+				</tr>
+			<%
+				}
+			%>
+		</table>
+		
+		<div id="button">
+			<a href="./goodsWriteFrom.jsp">
+				<input type="button" value="글쓰기">
+			</a>
+		</div>
 	</div>
 <%@ include file="/module/sidebar.jsp" %>
 
