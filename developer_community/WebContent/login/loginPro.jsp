@@ -38,14 +38,14 @@
 		}else if(result.equals("02아이디 불일치")){
 	%>
 			<script type="text/javascript">
-				alert('아이디 불일치');
+				alert('ID를 정확히 입력해주세요');
 				location.href='<%= request.getContextPath()%>/login/loginForm.jsp';
 			</script>	
 	<%	
 		}else if(result.equals("03비번 불일치")){
 	%>
 			<script type="text/javascript">
-				alert('비번 불일치');
+				alert('PW를 정확히 입력해주세요');
 				location.href='<%= request.getContextPath()%>/login/loginForm.jsp';
 			</script>
 	<%		

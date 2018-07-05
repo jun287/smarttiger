@@ -11,9 +11,9 @@
 	<body>	
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
-
+			<div id="jb-content">
+			</div>
 			<%@ include file="/module/sidebar.jsp" %>
-
 			<%@ include file="/module/footer.jsp" %>
 		</div>
 	</body>

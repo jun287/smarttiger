@@ -19,11 +19,12 @@
 	%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
+			
 			<div align="center">
 			<%
 				if(sessionId == null){
 			%>
-					<h3>로그인 해주세요</h3><br>  <!-- 회원가입 양식으로 회원정보를 받습니다.  -->
+			  <!-- 회원가입 양식으로 회원정보를 받습니다.  -->
 					<form method="post" action="<%=request.getContextPath() %>/login/loginPro.jsp">
 						<div id="login_box">
 							<h2>Member Login</h2>
@@ -59,7 +60,7 @@
 			<%
 				} 
 			%>
-			</div><br><br><br> <!-- login_box -->
+			</div><br><br> <!-- login_box -->
 			<%@ include file="/module/footer.jsp" %>
 		</div>
 	</body>
