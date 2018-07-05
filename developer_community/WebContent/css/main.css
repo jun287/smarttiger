@@ -68,6 +68,14 @@ body {
 	border: 1px solid #bcbcbc;
 }
 
+#jb-content2 {
+	padding: 20px;
+	padding-left: 200px;
+	margin-bottom: 20px;
+	border: 1px solid #bcbcbc;
+}
+
+
 #jb-sidebar {
 	width: 300px;
 	padding: 20px;

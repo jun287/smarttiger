@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>개발자 커뮤니티</title>
-		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/newfile.css"/>
+		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css"/>
 	</head>
 	<body>	
 	<%
@@ -26,7 +26,7 @@
 	%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
-			<div id="jb-content">
+			<div id="jb-content2">
 			<%
 				if(sessionId != null){
 			%>

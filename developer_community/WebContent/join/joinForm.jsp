@@ -19,7 +19,7 @@
 	%>	
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
-			<div id="jb-content">
+			<div id="jb-content2">
 			<%
 				if(sessionId == null){
 			%>
