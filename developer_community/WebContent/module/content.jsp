@@ -5,7 +5,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>Insert title here</title>
+		<title>개발자 커뮤니티</title>
+		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css"/>
 	</head>
 	<body>
 		<div id="jb-content">

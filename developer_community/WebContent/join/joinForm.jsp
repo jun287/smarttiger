@@ -7,12 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>개발자 커뮤니티</title>
 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css"/>
-		<style>
-			* {
-				margin:0;  /* 여백을 0으로 합니다. */
-				padding:0;
-			}
-			
+		<style>		
 			ul {
 				list-style-type:none; /* ul태그의 목록을 쓰지 않습니다. */
 			}
@@ -50,10 +45,7 @@
 			.cols li.col2 input.hp { /* cols 클래스에 li.col2중 input 클래스 hp의 크기를 35px로 합니다. */
 				width:35px;
 			}
-			
-			#intro {
-				vertical-align:top; 
-			}
+
 			#jb-container {
 				width: 1200px;
 				margin: 0px auto;
@@ -103,14 +95,14 @@
 	<body>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
-			<div align ="center">
+			<div align="center">
 				<h3>가입 양식</h3>  <!-- 회원가입 양식으로 회원정보를 받습니다.  -->
 				<form method="post" action="./joinPro.jsp">
 					<ul id="mem_form">
 						<li>
 							<ul class="cols">
 								<li class="col1">아이디 :</li> <!-- 아이디를 text 박스 "id"로 받습니다. -->
-								<li class="col2"><input type="text" name="id"></li>
+								<li class="col2" ><input type="text" name="id"></li>
 							</ul>
 						</li>
 						<li>

@@ -6,14 +6,14 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>Insert title here</title>
-		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css"/>
 	</head>
 	<body>
 		<div id="jb-header">
 			<nav>
 				<a href="<%= request.getContextPath() %>/index.jsp">HOME</a> | 
-			 	LOGIN |
-			  	JOIN |
+ 				<a href="<%= request.getContextPath() %>/login/loginForm.jsp">LOGIN</a> |
+			  	<a href="<%= request.getContextPath() %>/join/joinForm.jsp">JOIN</a> |
 			</nav>
 			<h1>스마트 타이거</h1>
 			<nav>
