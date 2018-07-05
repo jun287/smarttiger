@@ -33,8 +33,8 @@ public class GoodsDao {
 		statement.executeUpdate();
 		
 	}
-
-	public ArrayList<Goods> selectGoods() throws ClassNotFoundException, SQLException {
+	//상품 리스트 조회
+	public ArrayList<Goods> selectGoodsList() throws ClassNotFoundException, SQLException {
 		System.out.println("selectGodds");
 		Connection connection=null;
 		PreparedStatement statement =null;
@@ -61,5 +61,36 @@ public class GoodsDao {
 			arrayGoods.add(goods);
 		}
 		return arrayGoods;
+	}
+
+	//특정상품 보여주기
+	public Goods selectGoods(String goodscode) throws ClassNotFoundException, SQLException{
+		System.out.println("selectGoods");
+		
+		DriverDB driverdb=new DriverDB();
+		
+		Connection connection=null;
+		PreparedStatement statement=null;
+		ResultSet resultSet=null;
+		
+		String sql="select goods_code,id,goods_title,goods_info,goods_price,goods_date,goods_img,goods_inquiry from good  where goods_code =? order by goods_code DESC";
+	
+		connection=driverdb.drivercon();
+		statement=connection.prepareStatement(sql);
+		statement.setString(1, goodscode);
+		resultSet=statement.executeQuery();
+		
+		Goods goods=new Goods();
+		
+		if(resultSet.next()) {
+		goods.setGoods_code(resultSet.getString("goods_code"));
+		goods.setId(resultSet.getString("id"));
+		goods.setGoods_title(resultSet.getString("goods_title"));
+		goods.setGoods_price(resultSet.getString("goods_price"));
+		goods.setGoods_info(resultSet.getString("goods_info"));
+		goods.setGoods_date(resultSet.getString("goods_date"));
+		goods.setGoods_img(resultSet.getString("goods_img"));
+		}
+		return goods;
 	}
 }

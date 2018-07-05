@@ -125,7 +125,7 @@
 		</tr>
 		<%
 			GoodsDao goodsDao=new GoodsDao();
-			ArrayList<Goods> result=goodsDao.selectGoods();
+			ArrayList<Goods> result=goodsDao.selectGoodsList();
 			
 			for(int i=0;i<result.size();i++){
 				Goods resultgoods=result.get(i);
@@ -133,7 +133,7 @@
 			<tr>
 				<td>
 					<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
-					<a href="./goodsView.jsp?gods_code=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+					<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
 				</td>
 				<td><%=resultgoods.getId() %></td>
 				<td><%=resultgoods.getGoods_date() %></td>
@@ -143,6 +143,9 @@
 			}
 		%>
 	</table>
+	<div>
+		<input type="button" value="±Û¾²±â">
+	</div>
 	</div>
 <%@ include file="/module/sidebar.jsp" %>
 
