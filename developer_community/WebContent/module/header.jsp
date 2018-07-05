@@ -20,11 +20,11 @@
 				<ul id="jb">
 					<li><a href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
 					<li>|</li>
-					<li><a href="#">QnA게시판</a></li>
+					<li><a href="<%= request.getContextPath() %>/boardQnA/boardQnAList.jsp">QnA게시판</a></li>
 					<li>|</li>
-					<li><a href="#">중고거래</a></li>
+					<li><a href="<%= request.getContextPath() %>/goods/goodsList.jsp">중고거래</a></li>
 					<li>|</li>
-					<li><a href="#">회원정보</a></li>
+					<li><a href="<%= request.getContextPath() %>/memberInformation/memberInformation.jsp">회원정보</a></li>
 					<li>|</li>
 				</ul>
 			</nav>

@@ -99,12 +99,9 @@
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
 
-			<%@ include file="/module/content.jsp" %>
-
 			<%@ include file="/module/sidebar.jsp" %>
 
 			<%@ include file="/module/footer.jsp" %>
-
 		</div>
 	</body>
 </html>

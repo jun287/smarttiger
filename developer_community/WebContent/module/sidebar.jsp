@@ -130,17 +130,12 @@
 								<ul>
 									<li>
 										<a href="<%=request.getContextPath() %>/memberInformation/memberInformation.jsp"><%=sessionName%></a>님 <%=sessionLevel%>로 로그인
-									</li> <!-- id -->
-									<li id="pass">
-										<a href="<%=request.getContextPath() %>/login/logOut.jsp">로그아웃</a><br><br>
-									</li> <!-- pw  -->
+									</li> 
 								</ul>
+								<br><br><a href="<%=request.getContextPath() %>/login/logOut.jsp">로그아웃</a>
 							</li> 
 						</ul>
-						<ul id="btns">
-							<li><a href ="<%=request.getContextPath() %>/join/joinForm.jsp">회원가입</a></li>
-						</ul>
-					</div> <!-- login_box -->
+					</div>
 			<%
 				} 
 			%>
