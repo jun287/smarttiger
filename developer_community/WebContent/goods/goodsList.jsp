@@ -1,89 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"  pageEncoding="EUC-KR"%>
+<%@ page import="driverdb.DriverDB" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.GoodsDao" %>
+<%@ page import="dto.Goods" %>
+<% request.setCharacterEncoding("euckr"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-	#goodListWrap{
-		display:inline-block;
-	    width: 1200px;
-	    margin: 0 2% 30px 0;
-	    float: left;
+	#title{
+		width: 400px;
 	}
-	#goodListWrap #goodList{
-		display:inline-block;
-		background-color: green;
-	    width: 22%;
-	    height: 242px;
-	    margin: 0 2% 30px 0;
-	    float: left;
+	th{
+		background-color: #8C8C8C;
 	}
-	#goodList #img{
-		background-color: red;
-		width: 200px;
-		height: 30px;
+	#goods_inquiry{
+		text-align: center;
 	}
 </style>
 </head>
 <body>
-	<div id="goodListWrap">
-		<div id="goodList">
-			<div id="img">
+	<table>
+		<tr>
+			<th id="title">제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+		<%
+			GoodsDao goodsDao=new GoodsDao();
+			ArrayList<Goods> result=goodsDao.selectGoods();
 			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-			<div id="goodList">
-			<div id="img">
-			
-			</div>
-			<p>MicroSoft office</p>
-			<p>가격:100,000</p>
-		</div>
-	</div>
+			for(int i=0;i<result.size();i++){
+				Goods resultgoods=result.get(i);
+		%>
+			<tr>
+				<td>
+					<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
+					<a href="./goodsView.jsp?gods_code=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+				</td>
+				<td><%=resultgoods.getId() %></td>
+				<td><%=resultgoods.getGoods_date() %></td>
+				<td id="goods_inquiry"><%=resultgoods.getGoods_inquiry() %></td>
+			</tr>
+		<%
+			}
+		%>
+	</table>
 </body>
 </html>
