@@ -40,14 +40,14 @@
 	%>
 			<script type="text/javascript">
 				alert('아이디 불일치');
-				location.href='<%= request.getContextPath()%>/index.jsp';
+				location.href='<%= request.getContextPath()%>/login/loginForm.jsp';
 			</script>	
 	<%	
 		}else if(result.equals("03비번 불일치")){
 	%>
 			<script type="text/javascript">
 				alert('비번 불일치');
-				location.href='<%= request.getContextPath()%>/index.jsp';
+				location.href='<%= request.getContextPath()%>/login/loginForm.jsp';
 			</script>
 	<%		
 		}

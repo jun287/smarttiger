@@ -24,7 +24,7 @@
 					<li>|</li>
 					<li><a href="<%= request.getContextPath() %>/goods/goodsList.jsp">중고거래</a></li>
 					<li>|</li>
-					<li><a href="<%= request.getContextPath() %>/memberInformation/memberInformation.jsp">회원정보</a></li>
+					<li><a href="<%= request.getContextPath() %>/memberInformation/memberInformationUpdateForm.jsp">회원정보</a></li>
 					<li>|</li>
 				</ul>
 			</nav>

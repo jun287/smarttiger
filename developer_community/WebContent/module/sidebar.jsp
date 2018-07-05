@@ -129,7 +129,7 @@
 							<li id="id_pass">
 								<ul>
 									<li>
-										<a href="<%=request.getContextPath() %>/memberInformation/memberInformation.jsp"><%=sessionName%></a>님 <%=sessionLevel%>로 로그인
+										<a href="<%=request.getContextPath() %>/memberInformation/memberInformationUpdateForm.jsp"><%=sessionName%></a>님 <%=sessionLevel%>로 로그인
 									</li> 
 								</ul>
 								<br><br><a href="<%=request.getContextPath() %>/login/logOut.jsp">로그아웃</a>
