@@ -32,7 +32,6 @@
 			session.setAttribute("sessionName", member.getName());
 	%>
 			<script type="text/javascript">
-				alert('로그인성공');
 				location.href='<%= request.getContextPath()%>/index.jsp';
 			</script>
 	<%
