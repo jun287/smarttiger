@@ -20,6 +20,12 @@
 				margin:20px 0 0 50px;
 			}
 			
+			body { 
+				font-family:"맑은 고딕","돋움";
+				font-size:12px;
+				color:#444444;
+			}
+			
 			#mem_form { /* id : mem_form 에 크기 여백 글자체 글자크기 글자색 등을 설정합니다.  */
 				width:500px;
 				margin:10px 0 0 50px;
