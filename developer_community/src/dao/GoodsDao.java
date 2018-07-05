@@ -93,4 +93,37 @@ public class GoodsDao {
 		}
 		return goods;
 	}
+	public void updateGoods(Goods goods) throws ClassNotFoundException, SQLException {
+		System.out.print("updateGoods");
+		
+		Connection connection=null;
+		PreparedStatement statement=null;
+		
+		DriverDB driverdb=new DriverDB();
+		connection=driverdb.drivercon();
+		String sql="update good set goods_title=?,goods_info=?,goods_price=?,goods_img=? where goods_code=?";
+		
+		statement=connection.prepareStatement(sql);
+		statement.setString(1, goods.getGoods_title());
+		statement.setString(2, goods.getGoods_info());
+		statement.setString(3, goods.getGoods_price());
+		statement.setString(4, goods.getGoods_img());
+		statement.setString(5, goods.getGoods_code());
+		
+		statement.executeUpdate();
+	}
+	public void deleteGoods(String goodscode) throws ClassNotFoundException, SQLException {
+		System.out.println("deleteGoods");
+		
+		Connection connection=null;
+		PreparedStatement statement=null;
+		
+		DriverDB driverdb=new DriverDB();
+		connection=driverdb.drivercon();
+		
+		String sql="delete from good where goods_code=? ";
+		statement=connection.prepareStatement(sql);
+		statement.setString(1, goodscode);
+		statement.executeUpdate();
+	}
 }

@@ -57,12 +57,12 @@
 				float:right;
 				width: 380px;
 				height: 400px;
-				border: 1px solid #000000;
+				
 			}
 			#goodsInfo{
 				clear:both;
-				background-color:red;
-				margin:0 0 0 10px;
+				
+				margin:0 0 10px 10px;
 				width: 780px;
 			}
 		</style>
@@ -99,17 +99,30 @@
 					
 				</div>
 				<div id="userinfo">
-					<span><%=goods.getId() %></span><br>
-					<span><%=goods.getGoods_price() %>원</span><br>
-					<span>판매자 정보</span>	<br>			
-					<span>거래 방법</span><br>				
-					<span>배송방법</span><br>				
+					<span><%=goods.getGoods_title() %></span><br><br>
+					<span><%=goods.getGoods_price() %>원</span><br><br>
+					<span>판매자 정보<%=goods.getGoods_price() %></span><br><br>			
+					<span>거래 방법 안전거래미사용,직접거래</span><br><br>	
+					<span>배송방법  판매자와 직접연락하세요</span><br><br>				
+				</div>
+				<div id="goodsInfo">
+					<p>----------------------------------------------------------------------------------------------------------------------</P>
+					<p>* 거래전 필독! 주의하세요!</p>
+					<p>* 연락처가 없이 외부링크, 카카오톡, 댓글로만 거래할 때 </p>
+					<p>* 연락처 및 계좌번호를 사이버캅과 더치트로 꼭 조회해보기 </p>
+					<p>* 업체인 척 위장하여 신분증과 사업자등록증을 보내는 경우 </p>
+					<p>* 고가의 물품(휴대폰,전자기기)등만 판매하고 최근(1주일 내) 게시글만 있을 때 </p>
+					<p>* 해외직구로 면세받은 물품을 판매하는 행위는 불법입니다.</p>
+					<p>----------------------------------------------------------------------------------------------------------------------</P>
 				</div>
 				<div id="goodsInfo">
 				
 					<span><%=goods.getGoods_info()%></span>
 				</div>
-			</div>		
+			</div>	
 		</div>
+			<a href="./goodsdelete.jsp?sendCode=<%=sendCode%>"><input type="button" value="삭제">	</a>
+			<a href="./goodsUpdateForm.jsp?sendCode=<%=sendCode%>"><input type="button" value="수정">	</a>
+			<a href="./goodsList.jsp"><input type="button" value="목록">	</a>
 	</body>
 </html>

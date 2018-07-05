@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dao.GoodsDao"%>
+<%@ page import="dto.Goods"%>
 <%request.setCharacterEncoding("euckr"); %>
-<jsp:useBean id="Goods" class="dto.Goods"/>
-<jsp:setProperty property="*" name="Goods"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,13 +12,19 @@
 	</head>
 	<body>
 		<%
-			replace("\r\n","<br>");
-			System.out.println(Goods.getGoods_title()+"<--Goods.getTitle()");
-			System.out.println( Goods.getGoods_info()+"<--Goods.getComment()");
-			System.out.println(Goods.getGoods_price()+"<--Goods.getPrice()");
-			System.out.println(Goods.getGoods_img()+"<--Goods.getAttachment()");
+			
+			Goods goods = new Goods();
+			goods.setGoods_title(request.getParameter("goods_title"));
+			goods.setGoods_price(request.getParameter("goods_price"));
+			goods.setGoods_info(request.getParameter("goods_info").replace("\r\n","<br>"));
+			goods.setGoods_img(request.getParameter("goods_img"));
+			
+			System.out.println(goods.getGoods_title()+"<--goods.getGoods_title()");
+			System.out.println(goods.getGoods_info()+"<--goods.getGoods_info()");
+			System.out.println(goods.getGoods_price()+"<--goods.getGoods_price()");
+			System.out.println(goods.getGoods_img()+"<--goods.getGoods_img()");
 			GoodsDao goodsdao=new GoodsDao();
-			goodsdao.insertGoods(Goods);
+			goodsdao.insertGoods(goods);
 			
 			response.sendRedirect("./goodsList.jsp");
 		%>

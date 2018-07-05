@@ -11,11 +11,21 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#title{
-		width: 400px;
+		width: 500px;
+	}
+	#userid{
+		width: 50px;
+	}
+	#date{
+		width: 100px;
+	}
+	#inquiry{
+		width: 50px;
 	}
 	th{
 		background-color: #8C8C8C;
 	}
+
 	#goods_inquiry{
 		text-align: center;
 	}
@@ -112,12 +122,14 @@
 	}	
 	#button{
 		margin-top:10px;
-		margin-right:150px;
+		margin-right:40px;
 		float:right;
 	}
 	table {
-		margin-left: 100px;	
+		margin-left: 50px;	
+		font-size: 15px;
 	}
+	
 </style>
 </head>
 <body>
@@ -127,9 +139,9 @@
 		<table>
 			<tr>
 				<th id="title">제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th id="userid">작성자</th>
+				<th id="date">작성일</th>
+				<th id="inquiry">조회수</th>
 			</tr>
 			<%
 				GoodsDao goodsDao=new GoodsDao();
