@@ -130,7 +130,6 @@
 	
 	%>
 		<div id="jb-sidebar">
-			
 			<%
 				if(sessionId == null){
 			%>
@@ -183,6 +182,7 @@
 			<%
 				} 
 			%>
+				
 		</div>
 	</body>
 </html>
