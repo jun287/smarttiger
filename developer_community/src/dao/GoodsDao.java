@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class GoodsDao {
 	
 	//상품등록시키는 메서드 dto로 값을 받는다
-	public void insertGoods(Goods goods) throws ClassNotFoundException, SQLException{
+	public void insertGoods(Goods goods,String id) throws ClassNotFoundException, SQLException{
 		System.out.println("insertGoods");
 		
 		DriverDB driverdb=new DriverDB();
@@ -24,7 +24,7 @@ public class GoodsDao {
 		connection=driverdb.drivercon();
 		statement =connection.prepareStatement(sql);
 		
-		statement.setString(1, "1");
+		statement.setString(1, id);
 		statement.setString(2, goods.getGoods_title());
 		statement.setString(3, goods.getGoods_info());
 		statement.setString(4, goods.getGoods_price());

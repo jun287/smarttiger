@@ -14,6 +14,7 @@
 		<%
 			
 			Goods goods = new Goods();
+			String id=(String)session.getAttribute("sessionId");
 			goods.setGoods_title(request.getParameter("goods_title"));
 			goods.setGoods_price(request.getParameter("goods_price"));
 			goods.setGoods_info(request.getParameter("goods_info").replace("\r\n","<br>"));
@@ -24,7 +25,7 @@
 			System.out.println(goods.getGoods_price()+"<--goods.getGoods_price()");
 			System.out.println(goods.getGoods_img()+"<--goods.getGoods_img()");
 			GoodsDao goodsdao=new GoodsDao();
-			goodsdao.insertGoods(goods);
+			goodsdao.insertGoods(goods,id);
 			
 			response.sendRedirect("./goodsList.jsp");
 		%>

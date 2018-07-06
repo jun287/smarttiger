@@ -47,4 +47,5 @@
 	activityDao.insertActivity(activity);
 	
 	response.sendRedirect(request.getContextPath()+"/index.jsp");
+
 %>

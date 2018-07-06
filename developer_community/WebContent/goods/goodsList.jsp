@@ -165,7 +165,7 @@
 		</table>
 		
 		<div id="button">
-			<a href="./goodsWriteFrom.jsp">
+			<a href="./goodsWriteForm.jsp">
 				<input type="button" value="±Û¾²±â">
 			</a>
 		</div>
