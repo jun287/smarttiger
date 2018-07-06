@@ -35,12 +35,13 @@
 			String sendCode=request.getParameter("sendCode");
 			GoodsDao goodsDao=new GoodsDao();
 			Goods goods=goodsDao.selectGoods(sendCode);
-			
+			String sessionId=(String)session.getAttribute("sessionId");
+			if(sessionId!=null){
 		%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
 			<div id="jb-content2">
-				<form action="./goodsUpdatePro.jsp?sendCode=<%=sendCode%>" method="post">
+				<form action="<%=request.getContextPath() %>/goods/goodsUpdatePro.jsp?sendCode=<%=sendCode%>" method="post">
 					<div id="info">
 						<label id="name">상품이름:</label>&nbsp;&nbsp;<input type="text" name="goods_title" value="<%=goods.getGoods_title() %>"><br><br>
 						<label id="name">상품가격:</label>&nbsp;&nbsp;<input type="text" name="goods_price" value="<%=goods.getGoods_price() %>"><br><br>
@@ -55,5 +56,15 @@
 			</div>
 			<%@ include file="/module/footer.jsp" %>
 		</div>
+		<%
+			}else{
+		%>
+			<script>
+				alert("로그인하세요");
+				location.href='<%=request.getContextPath()%>/index.jsp'
+			</script>
+		<%	
+			}
+		%>
 	</body>
 </html>

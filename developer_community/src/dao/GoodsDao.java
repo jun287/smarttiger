@@ -33,22 +33,25 @@ public class GoodsDao {
 	
 		statement.executeUpdate();
 		
+		statement.close();
+		connection.close();
 	}
 	//상품 리스트 조회
-	public ArrayList<Goods> selectGoodsList() throws ClassNotFoundException, SQLException {
+	public ArrayList<Goods> selectGoodsList(int currentPage,int row) throws ClassNotFoundException, SQLException {
 		System.out.println("selectGodds");
 		Connection connection=null;
 		PreparedStatement statement =null;
 		ResultSet resultSet=null;
 		ArrayList<Goods> arrayGoods=new ArrayList<Goods>();
 		DriverDB driverdb=new DriverDB();
-	
-		String sql="select goods_code,id,goods_title,goods_info,goods_price,goods_date,goods_img,goods_inquiry from good order by goods_code DESC";
 		
+		String sql="select goods_code,id,goods_title,goods_info,goods_price,goods_date,goods_img,goods_inquiry from good order by goods_code DESC limit ?,?";
 		
+		int start=(currentPage-1)*row;
 		connection=driverdb.drivercon();
 		statement =connection.prepareStatement(sql);
-		
+		statement.setInt(1,start);
+		statement.setInt(2,row);
 		resultSet=statement.executeQuery();
 		
 		while(resultSet.next()){
@@ -61,6 +64,10 @@ public class GoodsDao {
 			
 			arrayGoods.add(goods);
 		}
+		resultSet.close();
+		statement.close();
+		connection.close();
+		
 		return arrayGoods;
 	}
 
@@ -92,7 +99,12 @@ public class GoodsDao {
 		goods.setGoods_info(resultSet.getString("goods_info"));
 		goods.setGoods_date(resultSet.getString("goods_date"));
 		goods.setGoods_img(resultSet.getString("goods_img"));
+		goods.setGoods_inquiry(resultSet.getString("goods_inquiry"));
 		}
+		resultSet.close();
+		statement.close();
+		connection.close();
+		
 		return goods;
 	}
 	//상품정보 업데이트
@@ -114,6 +126,9 @@ public class GoodsDao {
 		statement.setString(5, goods.getGoods_code());
 		
 		statement.executeUpdate();
+		
+		statement.close();
+		connection.close();
 	}
 	//상품정보 삭제
 	public void deleteGoods(String goodscode) throws ClassNotFoundException, SQLException {
@@ -129,5 +144,64 @@ public class GoodsDao {
 		statement=connection.prepareStatement(sql);
 		statement.setString(1, goodscode);
 		statement.executeUpdate();
+		
+		
+		statement.close();
+		connection.close();
+	}
+	//페이징
+	public int paging(int row) throws ClassNotFoundException, SQLException {
+		System.out.println("paging()");
+		
+		Connection connection=null;
+		PreparedStatement statement=null;
+		ResultSet resultSet=null;
+		
+		DriverDB driverDb=new DriverDB();
+		connection= driverDb.drivercon();
+		
+		String sql="select count(*) from good";
+		statement=connection.prepareStatement(sql);
+		
+		resultSet=statement.executeQuery();
+		
+		int total=0;
+		
+		if(resultSet.next()) {
+			if(resultSet.getInt("count(*)")%row==0) {
+				total=resultSet.getInt("count(*)")/row;
+			}else if(resultSet.getInt("count(*)")%row!=0) {
+				total=(resultSet.getInt("count(*)")/row)+1;
+			}
+			
+		}
+		
+		resultSet.close();
+		statement.close();
+		connection.close();
+		
+		return total;
+	}
+	//조회수 증가
+	public void insertInquiry(int goods_inquiry,String goods_code) throws ClassNotFoundException, SQLException {
+		
+		Connection connection=null;
+		PreparedStatement statement=null;
+		
+		
+		DriverDB driverDb=new DriverDB();
+		connection=driverDb.drivercon();
+		
+		String sql="update good set goods_inquiry=? where goods_code=?";
+		
+		statement=connection.prepareStatement(sql);
+		statement.setInt(1, goods_inquiry);
+		statement.setString(2, goods_code);
+		
+		statement.executeUpdate();
+		
+		statement.close();
+		connection.close();
+		
 	}
 }

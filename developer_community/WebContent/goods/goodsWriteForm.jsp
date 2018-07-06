@@ -6,7 +6,6 @@
 		<title>Insert title here</title>
 		<style>
 			form{
-				
 				padding:1px 1px 1px 1px;
 				width: 850px;
 				height: 500px;
@@ -28,10 +27,14 @@
 		</style>
 	</head>
 	<body>
+		<%
+			String sessionId=(String)session.getAttribute("sessionId");
+			if(sessionId!=null){
+		%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
 			<div id="jb-content2">
-				<form action="./goodsWritePro.jsp" method="post">
+				<form action="<%=request.getContextPath()%>/goods/goodsWritePro.jsp" method="post">
 					<div id="info">
 						<label id="name">상품이름:</label>&nbsp;&nbsp;<input type="text" name="goods_title"><br><br>
 						<label id="name">상품가격:</label>&nbsp;&nbsp;<input type="text" name="goods_price"><br><br>
@@ -46,5 +49,15 @@
 			</div>
 			<%@ include file="/module/footer.jsp" %>
 		</div>
+		<%
+			}else{
+		%>
+			<script>
+				alert("로그인하세요");
+				location.href='<%=request.getContextPath()%>/index.jsp'
+			</script>
+		<%	
+			}
+		%>
 	</body>
 </html>

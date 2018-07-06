@@ -129,7 +129,9 @@
 		margin-left: 50px;	
 		font-size: 15px;
 	}
-	
+	#paging{
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -146,17 +148,26 @@
 				<th id="inquiry">조회수</th>
 			</tr>
 			<%
-			
-				GoodsDao goodsDao=new GoodsDao();
-				ArrayList<Goods> result=goodsDao.selectGoodsList();
+				int row=10;
+				int currentPage;
 				
+				if(request.getParameter("currentPage")==null){
+					currentPage=1;
+				}else{
+					currentPage=Integer.parseInt(request.getParameter("currentPage"));
+				}
+				
+				GoodsDao goodsDao=new GoodsDao();
+				int total=goodsDao.paging(row);
+				ArrayList<Goods> result=goodsDao.selectGoodsList(currentPage,row);
+
 				for(int i=0;i<result.size();i++){
 					Goods resultgoods=result.get(i);
 			%>
 				<tr>
 					<td>
 						<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
-						<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+						<a href="<%=request.getContextPath() %>/goods/goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
 					</td>
 					<td><%=resultgoods.getId() %></td>
 					<td><%=resultgoods.getGoods_date() %></td>
@@ -166,9 +177,25 @@
 				}
 			%>
 		</table>
+		<div id="paging">
+			<%
+				if(currentPage>1){
+			%>
+			<a href="./goodsList.jsp?currentPage=<%=currentPage-1%>">&lt;이전</a>
+			<%
+				}
+			
+				if(currentPage<total){
+			%>
+			<a href="./goodsList.jsp?currentPage=<%=currentPage+1%>">다음&gt;</a>
+			<%
+				}
+			%>
+		</div>
 		<%
 			if(sessionId != null){
 		%>
+		
 		<div id="button">
 			<a href="./goodsWriteForm.jsp">
 				<input type="button" value="글쓰기">

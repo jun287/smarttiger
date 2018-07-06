@@ -23,7 +23,7 @@
 			GoodsDao goodsDao=new GoodsDao();
 			goodsDao.updateGoods(goods);
 			
-			response.sendRedirect("./goodsView.jsp?sendCode="+sendCode);
+			response.sendRedirect(request.getContextPath()+"/goods/goodsView.jsp?sendCode="+sendCode);
 		%>
 	</body>
 </html>

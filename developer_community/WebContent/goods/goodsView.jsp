@@ -34,10 +34,12 @@
 			}
 			#title{
 				margin-left: 10px;
+				font-size: 15px;
 			}
 			#date{
 				float:right;
 				margin-right: 10px;
+				font-size: 12px;
 			}
 			#name{
 				padding-left:10px;
@@ -54,6 +56,8 @@
 				
 			}
 			#img{
+				
+				font-size:70px;
 				margin:20px 0 10px 10px;
 				border-radius:5px;
 				float:left;
@@ -90,15 +94,11 @@
 			
 			String sendCode=request.getParameter("sendCode");
 			System.out.println(sendCode+"<--sendCode");
-			
-			
-			
-			
-			
-			
 		
-			GoodsDao GoodsDao=new GoodsDao();
-			Goods goods=GoodsDao.selectGoods(sendCode);
+			GoodsDao goodsDao=new GoodsDao();
+			Goods goods=goodsDao.selectGoods(sendCode);
+			int inquiry=Integer.parseInt(goods.getGoods_inquiry())+1;
+			goodsDao.insertInquiry(inquiry, sendCode);
 			
 			System.out.println(goods.getGoods_code()+"<--goods.getGoods_code()");
 			System.out.println(goods.getId()+"<--goods.getId()");
@@ -118,19 +118,21 @@
 					<span id="date"><%=goods.getGoods_date() %></span>
 				</div>
 				<div id="name">
-					<%=goods.getId() %>
+					<%=goods.getId()%>
 				</div>
 				<div id="info">
 					<div id="img">
-						
+						<br>&nbsp;
+						<span>smart</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>tiger</span>
 					</div>
 					<div id="userinfo">
 						<span><%=goods.getGoods_title() %></span><br><br>
 						<span><%=goods.getGoods_price() %>원</span><br><br>
 						<span>판매자 정보&nbsp;&nbsp;<%=goods.getEmail() %></span><br><br>			
-						<span>거래 방법 안전거래미사용</span><br>	
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;직접거래</span><br><br>		
-						<span>배송방법  판매자와 직접연락하세요</span><br><br>				
+						<span>거래 방법 : 안전거래미사용</span><br>	
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;직접거래</span><br><br>		
+						<span>배송방법 : 판매자와 직접연락하세요</span><br><br>				
 					</div>
 					<div id="goodsInfo">
 						<p>----------------------------------------------------------------------------------------------------------------------</P>
@@ -149,11 +151,14 @@
 					<div id="button">	
 						<%
 						if(sessionId!=null){
-						%>
 						
-								<a href="./goodsDelete.jsp?sendCode=<%=sendCode%>"><input type="button" value="삭제">	</a>
-								<a href="./goodsUpdateForm.jsp?sendCode=<%=sendCode%>"><input type="button" value="수정">	</a>
+							if(goods.getId().equals(sessionId)){
+						%>
+							
+								<a href="<%=request.getContextPath()%>/goods/goodsDelete.jsp?sendCode=<%=sendCode%>"><input type="button" value="삭제">	</a>
+								<a href="<%=request.getContextPath()%>/goods/goodsUpdateForm.jsp?sendCode=<%=sendCode%>"><input type="button" value="수정">	</a>
 						<%
+						}
 						}
 						%>
 						<a href="./goodsList.jsp"><input type="button" value="목록">	</a>

@@ -39,7 +39,7 @@
 			GoodsDao goodsdao=new GoodsDao();
 			goodsdao.insertGoods(goods,sessionId,email);
 			
-			response.sendRedirect("./goodsList.jsp");
+			response.sendRedirect(request.getContextPath()+"/goods/goodsList.jsp");
 		%>
 	</body>
 </html>

@@ -10,6 +10,8 @@ public class Goods {
 	private String goods_date;
 	private String goods_img;
 	private String email;
+	private String goods_inquiry;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -64,7 +66,7 @@ public class Goods {
 	public void setGoods_inquiry(String goods_inquiry) {
 		this.goods_inquiry = goods_inquiry;
 	}
-	private String goods_inquiry;
+
 	
 
 }

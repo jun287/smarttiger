@@ -15,7 +15,7 @@
 			GoodsDao goodsDao=new GoodsDao();
 			goodsDao.deleteGoods(sendCode);
 			
-			response.sendRedirect("./goodsList.jsp");
+			response.sendRedirect(request.getContextPath()+"/goods/goodsList.jsp");
 		%>
 	</body>
 </html>
