@@ -135,6 +135,8 @@
 <body>
 <div id="jb-container">
 <%@ include file="/module/header.jsp"%>
+<%@ include file="/module/sidebar.jsp" %>
+
 	<div id="jb-content">
 		<table>
 			<tr>
@@ -144,6 +146,7 @@
 				<th id="inquiry">조회수</th>
 			</tr>
 			<%
+			
 				GoodsDao goodsDao=new GoodsDao();
 				ArrayList<Goods> result=goodsDao.selectGoodsList();
 				
@@ -163,16 +166,20 @@
 				}
 			%>
 		</table>
-		
+		<%
+			if(sessionId != null){
+		%>
 		<div id="button">
 			<a href="./goodsWriteForm.jsp">
 				<input type="button" value="글쓰기">
 			</a>
 		</div>
+		<%
+			}
+		%>
 	</div>
-<%@ include file="/module/sidebar.jsp" %>
+	<%@ include file="/module/footer.jsp" %>
 
-<%@ include file="/module/footer.jsp" %>
 </div>
 </body>
 </html>

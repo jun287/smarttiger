@@ -9,6 +9,15 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>goodsView.jsp</title>
 		<style>
+			#button a:link{
+				color:white;
+			}
+			#button a:hover{
+			color:white;	
+			}
+			#button a:visited{
+			color:white;	
+			}
 			#wrap{
 				width: 800px;
 				height: auto;
@@ -19,7 +28,7 @@
 				padding-top:10px;
 				width: 800px;
 				height: 30px;
-				border-bottom: 1px double #000000;
+				border-bottom: 1px solid #000000;
 			}
 			#title{
 				margin-left: 10px;
@@ -33,7 +42,7 @@
 				padding-top:10px;
 				width: 790px;
 				height: 30px;
-				border-bottom: 1px double #000000;
+				border-bottom: 1px solid #000000;
 			}
 			#info{
 				align-content:center;
@@ -65,11 +74,16 @@
 				margin:0 0 10px 10px;
 				width: 780px;
 			}
+			#button{
+				
+				margin-left: 690px;
+				margin-bottom:10px;
+			}
 		</style>
 	</head>
 	<body>
 		<%
-		
+			String sessionId = (String)session.getAttribute("sessionId");
 			String sendCode=request.getParameter("sendCode");
 			System.out.println(sendCode+"<--sendCode");
 			
@@ -120,10 +134,21 @@
 					
 						<span><%=goods.getGoods_info()%></span>
 					</div>
-				</div>	
-				<a href="./goodsDelete.jsp?sendCode=<%=sendCode%>"><input type="button" value="삭제">	</a>
-				<a href="./goodsUpdateForm.jsp?sendCode=<%=sendCode%>"><input type="button" value="수정">	</a>
-				<a href="./goodsList.jsp"><input type="button" value="목록">	</a>
+					<div id="button">	
+						<%
+						if(sessionId!=null){
+						%>
+						
+								<a href="./goodsDelete.jsp?sendCode=<%=sendCode%>"><input type="button" value="삭제">	</a>
+								<a href="./goodsUpdateForm.jsp?sendCode=<%=sendCode%>"><input type="button" value="수정">	</a>
+						<%
+						}
+						%>
+						<a href="./goodsList.jsp"><input type="button" value="목록">	</a>
+					</div>
+					
+				</div>
+			
 			</div>
 			<%@ include file="/module/footer.jsp" %>
 		</div>
