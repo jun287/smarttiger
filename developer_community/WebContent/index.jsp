@@ -45,7 +45,6 @@
 			#goods_inquiry{
 				text-align: center;
 			}
-			
 		</style>
 	</head>
 	<body>	

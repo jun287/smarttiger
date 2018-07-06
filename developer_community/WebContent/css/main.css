@@ -147,3 +147,35 @@ h2 {
 	margin-left: 10px;
 	display: inline;
 }
+
+#main-content1{
+	width: 390px;
+	float:left;
+	border: 1px solid #bcbcbc;
+}
+#main-content2{
+	width: 390px;	
+	float:right;
+	border: 1px solid #bcbcbc;
+}
+
+#title{
+	width: 170px;
+}
+#userid{
+	width: 50px;
+}
+#date{
+	width: 100px;
+}
+#inquiry{
+	width: 50px;
+}
+
+th{
+	background-color: #8C8C8C;
+}
+
+#goods_inquiry{
+	text-align: center;
+}
