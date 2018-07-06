@@ -113,17 +113,26 @@
 							<th id="inquiry">Á¶È¸¼ö</th>
 						</tr>
 						<%
-						
-							GoodsDao goodsDao=new GoodsDao();
-							ArrayList<Goods> result=goodsDao.selectGoodsList();
+							int row=10;
+							int currentPage1;
 							
+							if(request.getParameter("currentPage")==null){
+								currentPage1=1;
+							}else{
+								currentPage1=Integer.parseInt(request.getParameter("currentPage"));
+							}
+							
+							GoodsDao goodsDao=new GoodsDao();
+							int total=goodsDao.paging(row);
+							ArrayList<Goods> result=goodsDao.selectGoodsList(currentPage1,row);
+			
 							for(int i=0;i<result.size();i++){
 								Goods resultgoods=result.get(i);
 						%>
 							<tr>
 								<td>
 									<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
-									<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+									<a href="<%=request.getContextPath() %>/goods/goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
 								</td>
 								<td><%=resultgoods.getId() %></td>
 								<td><%=resultgoods.getGoods_date() %></td>
