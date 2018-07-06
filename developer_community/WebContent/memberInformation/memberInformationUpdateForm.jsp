@@ -2,6 +2,8 @@
 
 <%@ page import ="dto.Member" %>
 <%@ page import ="dao.MemberDao" %>
+<%@ page import="dao.ActivityDao" %>
+<%@ page import="dto.Activity" %>
 
 <!DOCTYPE html>
 
@@ -22,6 +24,11 @@
 		
 		MemberDao memberDao = new MemberDao();
 		Member member = memberDao.memberInformationSelect(sessionId);
+		
+		Activity activity = new Activity();
+		activity.setMemberId(sessionId);
+		ActivityDao activityDao = new ActivityDao();
+		activity = activityDao.selectActivity(activity);
 		
 	%>
 		<div id="jb-container">
@@ -70,6 +77,33 @@
 								<ul class="cols">
 									<li class="col1">이메일 :</li> <!-- 이메일을 select 와 text박스로 받습니다. -->
 									<li class="col2"><input id="email1" type="text" name="email" value="<%=member.getEmail()%>"></li>
+								</ul>
+							</li>
+							<br><br>
+							<li>
+								<ul class="cols">
+									<li class="col1"></li>
+									<li class="col2">-----활동 정보-----</li>
+								</ul>
+							</li>
+							<li>
+								<ul class="cols">
+									<li class="col1">총 질문수: <%=activity.getTotalQuestion()%></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="cols">
+									<li class="col1">총 답변수: <%=activity.getTotalAnswer()%></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="cols">
+									<li class="col1">선택한 답변수: <%=activity.getChooseAnswer()%></li>	
+								</ul>
+							</li>
+							<li>
+								<ul class="cols">
+									<li class="col1">활동 점수: <%=activity.getActivityScore()%></li>		
 								</ul>
 							</li>
 							<li>

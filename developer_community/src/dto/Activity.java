@@ -1,11 +1,13 @@
 package dto;
 
 public class Activity {
+	
 	private String memberId;
 	private int totalQuestion = 0;
 	private int totalAnswer = 0;
 	private int chooseAnswer = 0;
 	private int activityScore = 0;
+	
 	public String getMemberId() {
 		return memberId;
 	}

@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 
-<%@ page import="java.sql.DriverManager"%> <!-- 드라이버 로딩을 위해 DrvierManager 클래스를 import 합니다. -->
-<%@ page import="java.sql.Connection"%> <!-- db 연결을 위해 Connection 클래스를 import 합니다. -->
-<%@ page import="java.sql.PreparedStatement"%> <!-- Query문 객체생성 및 사용하기 위해 PreparedStatement 클래스를 import 합니다. -->
-<%@ page import="java.sql.ResultSet" %> <!-- select Query 문을 조회하고 결과를 사용하기위해 ResulSet클래스를  import 합니다. -->
 <%@ page import="dto.Member" %>
 <%@ page import="dao.MemberDao" %>
 <%@ page import="dao.ActivityDao" %>
 <%@ page import="dto.Activity" %>
-<% request.setCharacterEncoding("euckr"); %>
+
 <!DOCTYPE html>
 <%
-		
+	request.setCharacterEncoding("euckr");
 	// joinForm 에서 회원가입 양식에 맞게 값들을 받아서 변수에 대입합니다.
 	String id = request.getParameter("id"); 
 	String pw = request.getParameter("pw");
