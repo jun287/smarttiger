@@ -19,7 +19,6 @@
 	%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
-			
 			<div align="center">
 			<%
 				if(sessionId == null){

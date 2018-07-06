@@ -25,10 +25,6 @@
 		MemberDao memberDao = new MemberDao();
 		Member member = memberDao.memberInformationSelect(sessionId);
 		
-		Activity activity = new Activity();
-		activity.setMemberId(sessionId);
-		ActivityDao activityDao = new ActivityDao();
-		activity = activityDao.selectActivity(activity);
 		
 	%>
 		<div id="jb-container">
@@ -36,6 +32,10 @@
 			<div id="jb-content2">
 			<%
 				if(sessionId != null){
+					Activity activity = new Activity();
+					activity.setMemberId(sessionId);
+					ActivityDao activityDao = new ActivityDao();
+					activity = activityDao.selectActivity(activity);
 			%>
 
 					<h3>회원 정보</h3>  <!-- 회원가입 양식으로 회원정보를 받습니다.  -->
