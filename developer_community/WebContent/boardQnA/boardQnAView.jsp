@@ -24,10 +24,6 @@
 				border:1px solid #353535;
 				margin:15px 0 0 0;
 				padding:15px 15px 15px 15px;
-			}span{
-				font-size:25px;
-				font-weight:bold;
-			}
 		</style>
 	</head>
 	<body>
