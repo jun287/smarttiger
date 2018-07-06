@@ -18,6 +18,7 @@
 	BoardQnACommentDao boardQnACommentDao = new BoardQnACommentDao();
 	boardQnACommentDao.insertBoardQnAComment(boardQnAComment);
 	ActivityDao activityDao = new ActivityDao();
+	activity=activityDao.selectActivity(activity);
 	activityDao.answerFromUpdateActivity(activity);
 	response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAView.jsp?boardQnANumber="+boardQnAComment.getBoardQnANumber());
 	//답변글로 이동

@@ -41,6 +41,7 @@ public class Activity {
 	}
 	public void setActivityScore(int activityScore) {
 		this.activityScore = activityScore;
+		System.out.println(activityScore+"<--setActivityScore");
 	}
 	@Override
 	public String toString() {

@@ -24,6 +24,10 @@
 				border:1px solid #353535;
 				margin:15px 0 0 0;
 				padding:15px 15px 15px 15px;
+			}.span{
+				font-size:25px;
+				font-weight:bold;
+			}
 		</style>
 	</head>
 	<body>
@@ -48,6 +52,7 @@
 		Activity activity = new Activity();
 		activity.setMemberId(memberId);
 		ActivityDao activityDao = new ActivityDao();
+		activity=activityDao.selectActivity(activity);
 		activityDao.chooseAnswerFromUpdateActivity(activity);
 		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAView.jsp?boardQnANumber="+boardQnANumber);
 	}
@@ -71,7 +76,7 @@
 					</tr>			
 				</table>
 				<div class="clear" id="QnAcontent">
-					<span>질문 내용</span><br>
+					<span class="span">질문 내용</span><br>
 					<%=boardQnA.getBoardQnAContent() %>
 				</div>
 <%
@@ -97,7 +102,7 @@
 		
 			
 				<div class="clear" id="QnACommentContent">
-					<span><%=boardQnAComment.getMemberId() %>님의 답변 내용</span><br>
+					<span class="span"><%=boardQnAComment.getMemberId() %>님의 답변 내용</span><br>
 					<%=boardQnAComment.getBoardqnaCommentDate() %><br>
 					<%=boardQnAComment.getBoardqnaCommentContent() %><br>
 <% 
