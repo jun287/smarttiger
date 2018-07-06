@@ -34,6 +34,7 @@
 		ActivityDao activityDao = new ActivityDao();
 		Activity activity = new Activity();
 		activity.setMemberId(boardQnA.getMemberId());
+		activity=activityDao.selectActivity(activity);
 		activityDao.deleteFromUpdateActivity(activity);
 	}else if(!sessionId.equals(boardQnA.getMemberId())){
 		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");

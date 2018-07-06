@@ -18,6 +18,7 @@
 	BoardQnADao boardQnADao = new BoardQnADao();
 	boardQnADao.insertBoardQnA(boardQnA);
 	ActivityDao activityDao = new ActivityDao();
+	activity=activityDao.selectActivity(activity);
 	activityDao.questionFromUpdateActivity(activity);
 	response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
 	//리스트로 이동
