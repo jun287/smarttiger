@@ -14,11 +14,29 @@ public class MemberDao {
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 	
+	
 	public void memberDelete(String id, String pw) throws ClassNotFoundException, SQLException {
 		
 		DriverDB driverDb = new DriverDB();
 		connection = driverDb.drivercon();
 			
+		
+	}
+	// id 와 level을 매개변수로 받아서 데이터베이스 테이블에 level 컬럼을 수정하는 메서드 선언
+	public void memberLevel(String id ,String level) throws ClassNotFoundException, SQLException {
+		
+		DriverDB driverDb = new DriverDB();
+		connection = driverDb.drivercon();
+		
+		statement = connection.prepareStatement("UPDATE member SET level=? WHERE id=?");
+		
+		statement.setString(1, level);
+		statement.setString(2, id);
+		
+		statement.executeUpdate();
+		
+		statement.close();
+		connection.close();
 		
 	}
 	// 수정된 회원정보를 담은 Member객체의 주소값을 매개변수로 하여 데이터베이스에 테이블 데이터를 수정하는 메서드 선언 
@@ -38,6 +56,8 @@ public class MemberDao {
 		
 		statement.executeUpdate();
 		
+		statement.close();
+		connection.close();
 	}
 	// 접속정보 ID를 매개변수로 받아서 데이터베이스 테이블을 조회하고 회원 정보를 member 클래스객체를 생성하여 대입받아 객체의 주소를 리턴하는 메서드 선언
 	public Member memberInformationSelect(String id) throws ClassNotFoundException, SQLException {

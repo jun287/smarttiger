@@ -2,6 +2,8 @@
 
 <%@ page import="dao.MemberDao" %>
 <%@ page import="dto.Member" %>
+<%@ page import="dao.ActivityDao" %>
+<%@ page import="dto.Activity" %>
 
 
 <!DOCTYPE html>
@@ -25,7 +27,31 @@
 		
 		System.out.println(result);
 		
+		Activity activity = new Activity();
+		activity.setMemberId(id);
+		ActivityDao activityDao = new ActivityDao();
+		activity = activityDao.selectActivity(activity);
+		int score = activity.getActivityScore();
+		System.out.println(score);
+		String level = null;
+		
+		if(score<100){
+			level = "초급개발자";
+			memberDao.memberLevel(id,level);
+			System.out.println(level);
+		}else if(score>=100 && score<=490){
+			level = "중급개발자";
+			memberDao.memberLevel(id,level);
+			System.out.println(level);
+		}else if(score>500){
+			level = "고급개발자";
+			memberDao.memberLevel(id,level);
+			System.out.println(level);
+		}
+		
+		
 		if(result.equals("01로그인 성공")){
+			
 			Member member = memberDao.memberGetForSession(id);
 			session.setAttribute("sessionId", member.getId());
 			session.setAttribute("sessionLevel", member.getLevel());
