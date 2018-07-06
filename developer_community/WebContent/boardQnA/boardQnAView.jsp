@@ -1,7 +1,10 @@
 <!-- 28기 이원상 2018. 7. 5(목) boardQnAView.jsp -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page import = "java.util.ArrayList"%>
 <%@ page import = "dao.BoardQnADao"%>
+<%@ page import = "dao.BoardQnACommentdDao"%>
 <%@ page import = "dto.BoardQnA"%>
+<%@ page import = "dto.BoardQnAComment"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,8 +18,7 @@
 			}
 			.clear{
 				clear:both;
-			}
-			#QnAcontent, #viewHead{
+			}#QnAcontent, #QnACommentContent{
 				border:1px solid #353535;
 				margin:15px 0 0 0;
 				padding:15px 15px 15px 15px;
@@ -40,6 +42,10 @@
 	BoardQnA boardQnA = new BoardQnA();
 	boardQnA.setBoardQnANumber(boardQnANumber);
 	boardQnA = boardQnADao.selectBoardQnA(boardQnA);
+	BoardQnACommentdDao boardQnACommentdDao = new BoardQnACommentdDao();
+	BoardQnAComment boardQnAComment = new BoardQnAComment();
+	boardQnAComment.setBoardQnANumber(boardQnANumber);
+	ArrayList<BoardQnAComment> boardQnACommentList = boardQnACommentdDao.selectBoardQnAComment(boardQnAComment);
 %>			
 				<table>
 					<tr>
@@ -80,8 +86,23 @@
 				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnACommentWriteForm.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber()%>">| 답글작성 | </a></div>
 				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
 <%		
-	}	
-%>					
+	}for(int i=0; i<boardQnACommentList.size(); i++){
+		boardQnAComment = boardQnACommentList.get(i);
+%>				
+
+			
+				<div class="clear" id="QnACommentContent">
+					<span><%=boardQnAComment.getMemberId() %>님의 답변 내용</span><br>
+					<%=boardQnAComment.getBoardqnaCommentDate() %><br>
+					<%=boardQnAComment.getBoardqnaCommentContent() %><br>
+					<form>
+						<input type="image" src="<%=request.getContextPath() %>/img/choose.png">
+						<input type="hidden" name="memberId" value="<%=boardQnAComment.getMemberId() %>">
+					</form>
+				</div>
+<%				
+	}
+%>	
 			</div>
 			<%@include file="/module/footer.jsp" %>
 		</div>			

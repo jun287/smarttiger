@@ -112,7 +112,7 @@
 	}
  %>			
 				</table>
-				<div id="page">
+				<div id="page">	
 <%
 	if(currentPage !=0 && currentPage != 1){
 %>

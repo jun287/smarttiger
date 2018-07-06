@@ -16,7 +16,7 @@
 			.clear{
 				clear:both;
 			}
-			#QnAcontent, #viewHead{
+			#QnAcontent, #QnACommentContent{
 				border:1px solid #353535;
 				margin:15px 0 0 0;
 				padding:15px 15px 15px 15px;
@@ -60,13 +60,32 @@
 					</tr>			
 				</table>
 				<div class="clear" id="QnAcontent">
-					<span>질문 내용</span><br>
+				<span>질문 내용</span><br>
 					<%=boardQnA.getBoardQnAContent() %>
 				</div>
-				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>		
-			</div>
-			<div>
-				답글작성해야돼 폼여기다가 만들어
+				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
+<%
+	if(sessionId != null){
+%>			
+				<div id="QnACommentContent">
+				<span>답변 내용</span><br>
+					<form action="<%=request.getContextPath()%>/boardQnA/boardQnACommentWritePro.jsp" method="post">
+						<div> 
+							<label for="memberId">답변자 ID:</label>
+							<input type="text" name="memberId" id="memberId" value="<%=sessionId%>" readonly>
+							<input type="hidden" name="boardQnANumber" value="<%=boardQnA.getBoardQnANumber()%>">
+						</div>
+						<div>	
+							<label for="boardqnaCommentContent">글 내용</label>
+							<textarea name="boardqnaCommentContent" id="boardqnaCommentContent" style="width:300px; height:300px;">
+							</textarea>
+							<input type="submit" value="등록">
+						</div>
+					</form>
+				</div>		
+<%		
+	}
+%>					
 			</div>
 			<%@include file="/module/footer.jsp" %>
 		</div>			
