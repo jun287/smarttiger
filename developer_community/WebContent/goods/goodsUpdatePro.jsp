@@ -17,7 +17,7 @@
 			goods.setGoods_code(request.getParameter("sendCode"));
 			goods.setGoods_title(request.getParameter("goods_title"));
 			goods.setGoods_price(request.getParameter("goods_price"));
-			goods.setGoods_info(request.getParameter("goods_info"));
+			goods.setGoods_info(request.getParameter("goods_info").replace("\r\n","<br>"));
 			goods.setGoods_img(request.getParameter("goods_img"));
 			
 			GoodsDao goodsDao=new GoodsDao();

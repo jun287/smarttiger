@@ -43,7 +43,7 @@
 				<label id="name">상품이름:</label>&nbsp;&nbsp;<input type="text" name="goods_title" value="<%=goods.getGoods_title() %>"><br><br>
 				<label id="name">상품가격:</label>&nbsp;&nbsp;<input type="text" name="goods_price" value="<%=goods.getGoods_price() %>"><br><br>
 				<label id="name">상품정보</label><br><br>
-				<textarea name="goods_info"><%=goods.getGoods_info()%></textarea><br>
+				<textarea name="goods_info"><%=goods.getGoods_info().replace("<br>","\r\n")%></textarea><br>
 				<label>사진첨부</label>&nbsp;:&nbsp;<input type="file" value="사진첨부" name="goods_img" value="">
 			</div>
 			<div id="button">
