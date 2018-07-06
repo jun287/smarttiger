@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dao.GoodsDao" %>
+<%@ page import="dto.Goods" %>
+<%@ page import="dao.BoardQnADao"%>
+<%@ page import="dto.BoardQnA"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -7,56 +13,128 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>개발자 커뮤니티</title>
 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/main.css"/>
+		<style>
+			#main-content1{
+				width: 390px;
+				float:left;
+				border: 1px solid #bcbcbc;
+			}
+			#main-content2{
+				width: 390px;	
+				float:right;
+				border: 1px solid #bcbcbc;
+			}
+			
+			#title{
+				width: 170px;
+			}
+			#userid{
+				width: 50px;
+			}
+			#date{
+				width: 100px;
+			}
+			#inquiry{
+				width: 50px;
+			}
+			
+			th{
+				background-color: #8C8C8C;
+			}
+		
+			#goods_inquiry{
+				text-align: center;
+			}
+			
+		</style>
 	</head>
 	<body>	
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
 			<div id="jb-content">
-				저 오늘 떠나요 공항으로<br>
-				핸드폰 꺼 놔요 제발 날 찾진 말아줘<br>
-				시끄럽게 소리를 질러도 어쩔 수 없어 나<br>
-				가볍게 손을 흔들며 bye bye-<br>
-				<br>
-				쉬지 않고 빛났던 꿈같은 my youth<br>
-				이리저리 치이고 또 망가질 때쯤<br>
-				지쳤어 나 미쳤어 나 떠날 거야 다 비켜<br>
-				I fly away-<br>
-				<br>
-				Take me to London Paris New York city들<br>
-				아름다운 이 도시에 빠져서 나<br>
-				Like I'm a bird bird 날아다니는 새처럼<br>
-				난 자유롭게 fly fly 나 숨을 셔<br>
-				<br>
-				Take me to new world anywhere 어디든<br>
-				답답한 이 곳을 벗어 나기만 하면<br>
-				Shining light light 빛나는 my youth<br>
-				자유롭게 fly fly 나 숨을 셔<br>
-				<br>
-				저 이제 쉬어요 떠날 거에요<br>
-				노트북 꺼 놔요 제발 날 잡진 말아줘<br>
-				시끄럽게 소리를 질러도 어쩔 수 없어 나<br>
-				가볍게 손을 흔들며 see ya-<br>
-				쉬지 않고 빛났던 꿈같은 my youth<br>
-				이리 저리 치이고 또 망가질 때쯤<br>
-				지쳤어 나 미쳤어 나 떠날 거야 다 비켜<br>
-				I fly away-<br>
-				<br>
-				Take me to London Paris New York city들<br>
-				아름다운 이 도시에 빠져서 나<br>
-				Like I'm a bird bird 날아 다니는 새처럼<br>
-				난 자유롭게 fly fly 나 숨을 셔<br>
-				<br>
-				Take me to new world anywhere 어디든<br>
-				답답한 이 곳을 벗어 나기만 하면<br>
-				Shining light light 빛나는 my youth<br>
-				자유롭게 fly fly 나 숨을 셔<br>
-				<br>
-				I can fly away Fly always always always<br>
-				<br>
-				Take me to new world anywhere 어디든<br>
-				답답한 이 곳을 벗어 나기만 하면<br>
-				Shining light light 빛나는 my youth<br>
-				자유롭게 fly fly 나 숨을 셔<br>
+				<div id="main-content1">
+				<% 
+					String sk = (request.getParameter("sk")!=null)?request.getParameter("sk"):"";
+					String sv = (request.getParameter("sv")!= null && !request.getParameter("sv").equals(""))?("%"+request.getParameter("sv")+"%"):"";
+					System.out.println(sk+"<--sk");
+					System.out.println(sv+"<--sv");
+					String beginDate = (request.getParameter("beginDate")!=null)?request.getParameter("beginDate"):"";
+					String endDate = (request.getParameter("endDate")!=null)?request.getParameter("endDate"):"";
+					System.out.println(beginDate+"<--beginDate");
+					System.out.println(endDate+"<--endDate");
+					
+					BoardQnADao boardQnADao = new BoardQnADao();
+					BoardQnA boardQnA = new BoardQnA();
+					ArrayList<BoardQnA> boardQnAList = new ArrayList<>();
+					int currentPage = 1;
+					if(request.getParameter("currentPage") != null){
+						currentPage = Integer.parseInt(request.getParameter("currentPage"));
+					}
+					int pagePerRow = 10;
+					if(request.getParameter("pagePerRow") != null){
+						pagePerRow = Integer.parseInt(request.getParameter("pagePerRow"));
+					}
+					System.out.println(pagePerRow+"<--pagePerRow");
+					int lastPage = boardQnADao.countBoardQnA(pagePerRow);
+					boardQnAList = boardQnADao.selectBoardQnASearch(beginDate, endDate, sk, sv, currentPage, pagePerRow);
+
+				%>
+					<h2>Q&A 게시판</h2>
+					<table>
+						<tr>
+							<th id="title">제목</th>
+							<th id="userid">작성자</th>
+							<th id="date">작성일</th>
+							<th id="inquiry">조회수</th>
+						</tr>
+				<%
+					for(int i=0; i<boardQnAList.size(); i++){
+						boardQnA = boardQnAList.get(i);
+				%>
+						<tr>
+							<td><a href="<%=request.getContextPath() %>/boardQnA/boardQnAView.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber() %>"><%=boardQnA.getBoardQnAtitle() %></a></td>
+							<td><%=boardQnA.getMemberId() %></td>
+							<td><%=boardQnA.getBoardQnADate() %></td>
+							<td><%=boardQnA.getBoardQnAhits() %></td>
+						</tr>
+				<%
+					}
+				%>
+				
+					</table>
+				</div>
+				
+				<div id="main-content2">
+					<h2>중고 게시판</h2>
+					<table>
+						<tr>
+							<th id="title">제목</th>
+							<th id="userid">작성자</th>
+							<th id="date">작성일</th>
+							<th id="inquiry">조회수</th>
+						</tr>
+						<%
+						
+							GoodsDao goodsDao=new GoodsDao();
+							ArrayList<Goods> result=goodsDao.selectGoodsList();
+							
+							for(int i=0;i<result.size();i++){
+								Goods resultgoods=result.get(i);
+						%>
+							<tr>
+								<td>
+									<%=resultgoods.getGoods_code()%>&nbsp;&nbsp;&nbsp;
+									<a href="./goodsView.jsp?sendCode=<%=resultgoods.getGoods_code() %>"><%=resultgoods.getGoods_title() %></a>
+								</td>
+								<td><%=resultgoods.getId() %></td>
+								<td><%=resultgoods.getGoods_date() %></td>
+								<td id="goods_inquiry"><%=resultgoods.getGoods_inquiry() %></td>
+							</tr>
+						<%
+							}
+						%>
+					</table>
+				</div>
 			</div>
 			<%@ include file="/module/sidebar.jsp" %>
 			<%@ include file="/module/footer.jsp" %>
