@@ -39,6 +39,7 @@
 	<body>
 		<div id="jb-container">
 		<%@include file="/module/header.jsp" %>
+		<%@ include file="/module/sidebar.jsp" %>
 			<div id="jb-content">		
 				<div id="select">
 					<form action="<%=request.getContextPath() %>/boardQnA/boardQnAList.jsp" method="post" id="selectForm">
@@ -70,9 +71,6 @@
 					</tr>
 <%
 	request.setCharacterEncoding("EUC-KR");
-	String sessionId = (String)session.getAttribute("sessionId");
-	String sessionLevel = (String)session.getAttribute("sessionLevel");
-	String sessionName = (String)session.getAttribute("sessionName");
 	
 	String sk = (request.getParameter("sk")!=null)?request.getParameter("sk"):"";
 	String sv = (request.getParameter("sv")!= null && !request.getParameter("sv").equals(""))?("%"+request.getParameter("sv")+"%"):"";

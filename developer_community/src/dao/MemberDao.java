@@ -14,6 +14,14 @@ public class MemberDao {
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 	
+	public void memberDelete(String id, String pw) throws ClassNotFoundException, SQLException {
+		
+		DriverDB driverDb = new DriverDB();
+		connection = driverDb.drivercon();
+			
+		
+	}
+	// 수정된 회원정보를 담은 Member객체의 주소값을 매개변수로 하여 데이터베이스에 테이블 데이터를 수정하는 메서드 선언 
 	public void memberUpdate(Member member) throws ClassNotFoundException, SQLException {
 		
 		DriverDB driverDb = new DriverDB();
@@ -31,7 +39,7 @@ public class MemberDao {
 		statement.executeUpdate();
 		
 	}
-	
+	// 접속정보 ID를 매개변수로 받아서 데이터베이스 테이블을 조회하고 회원 정보를 member 클래스객체를 생성하여 대입받아 객체의 주소를 리턴하는 메서드 선언
 	public Member memberInformationSelect(String id) throws ClassNotFoundException, SQLException {
 		
 		Member member = new Member();
@@ -60,7 +68,7 @@ public class MemberDao {
 		return member;
 		
 	}
-	
+	// 회원 id 를 매개변수로 받아서 세션처리 할 id,level,name 을 데이터베이스테이블에서 조회후 member 클래스객체에 대입하고 리턴하는 메서드 선언(세션 처리시 필요)
 	public Member memberGetForSession(String id) throws ClassNotFoundException, SQLException {
 		
 		Member member = new Member();
@@ -85,7 +93,7 @@ public class MemberDao {
 		
 		return member;	
 	}
-	
+	// id 와 pw 를 받아서 id로 데이터베이스 조회후 조건문으로 경우의 수 대로 result 를 받아 리턴하는 메서드 선언(로그인시 필요)
 	public String memberLogin(String id, String pw) throws ClassNotFoundException, SQLException {
 		
 		DriverDB driverDb = new DriverDB();
@@ -116,7 +124,7 @@ public class MemberDao {
 		
 		return result;
 	}
-	
+	// 회원정보가 담긴 member 클래스객체의 주소값을 매개변수로 받아서 데이터베이스에 입력하는 메서드 선언
 	public void memberJoin(Member member) throws SQLException, ClassNotFoundException {
 		
 		DriverDB driverDb = new DriverDB();

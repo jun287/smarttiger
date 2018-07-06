@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 
+<%@ page import = "dao.MemberDao" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -11,6 +13,9 @@
 	<%
 		String id= request.getParameter("id");
 		String pw= request.getParameter("pw");
+		
+		MemberDao memberDao = new MemberDao();
+		
 	%>
 	</body>
 </html>

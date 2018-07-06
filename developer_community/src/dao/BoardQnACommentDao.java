@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import driverdb.DriverDB;
 import dto.BoardQnAComment;
 
-public class BoardQnACommentdDao {
+public class BoardQnACommentDao {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
@@ -91,5 +91,34 @@ public class BoardQnACommentdDao {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
+	}
+	
+	/*
+	메소드 설명	
+	1. 용도 : 1개의 QnA게시판 글에 답글 조회(DB BoardQnA_comment테이블 조회)
+	2. 매개변수 : int boardQnANumber
+	3. 리턴값 : BoardQnAComment클래스를 통해 생성된 객체의 참조갑
+	4. BoardQnAComment Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnACommentNumber, int boardQnANumber, String memberId,	String boardqnaCommentContent, String boardqnaCommentDate
+		String choose;
+	*/
+	public BoardQnAComment selectBoardQnAComment(int boardQnANumber) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		BoardQnAComment boardQnAComment = new BoardQnAComment();
+		sql = "select boardqna_comment_no,boardqna_no,member_id,boardqna_comment_content,boardqna_comment_date,choose from boardqna_comment where boardqna_no=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, boardQnANumber);
+		resultSet = preparedStatement.executeQuery();
+		if(resultSet.next()){
+		boardQnAComment.setBoardQnACommentNumber(resultSet.getInt(1));
+		boardQnAComment.setBoardQnANumber(resultSet.getInt(2));
+		boardQnAComment.setMemberId(resultSet.getString(3));
+		boardQnAComment.setBoardqnaCommentContent(resultSet.getString(4));
+		boardQnAComment.setBoardqnaCommentDate(resultSet.getString(5));
+		boardQnAComment.setChoose(resultSet.getString(6));
+		}
+		return boardQnAComment;
 	}
 }
