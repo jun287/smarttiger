@@ -14,6 +14,24 @@ public class MemberDao {
 	PreparedStatement statement = null;
 	ResultSet resultSet = null;
 	
+	public void memberUpdate(Member member) throws ClassNotFoundException, SQLException {
+		
+		DriverDB driverDb = new DriverDB();
+		connection = driverDb.drivercon();
+		
+		statement = connection.prepareStatement("UPDATE member SET pw=?,name=?,level=?,email=?,phone=? WHERE id=?");
+		
+		statement.setString(1, member.getPw());
+		statement.setString(2, member.getName());
+		statement.setString(3, member.getLevel());
+		statement.setString(4, member.getEmail());
+		statement.setString(5, member.getPhone());
+		statement.setString(6, member.getId());
+		
+		statement.executeUpdate();
+		
+	}
+	
 	public Member memberInformationSelect(String id) throws ClassNotFoundException, SQLException {
 		
 		Member member = new Member();

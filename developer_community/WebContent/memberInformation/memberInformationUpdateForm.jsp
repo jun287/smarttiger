@@ -38,7 +38,7 @@
 								<ul class="cols">
 									<li class="col1">아이디 :</li> 
 									<li class="col2" ><%=member.getId()%></li>
-									<input type="hidden" name="id" value="<%=member.getId()%>">
+									<li><input type="hidden" name="id" value="<%=member.getId()%>"></li>
 								</ul>
 							</li>
 							<li>
@@ -57,7 +57,7 @@
 								<ul class="cols">
 									<li class="col1">권한 :</li> 
 									<li class="col2"><%=member.getLevel()%></li>
-									<input type="hidden" name="level" value="<%=member.getLevel()%>">
+									<li><input type="hidden" name="level" value="<%=member.getLevel()%>"></li>
 								</ul>
 							</li>
 							<li>
