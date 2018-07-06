@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "java.util.ArrayList"%>
 <%@ page import = "dao.BoardQnADao"%>
-<%@ page import = "dao.BoardQnACommentdDao"%>
+<%@ page import = "dao.BoardQnACommentDao"%>
 <%@ page import = "dao.ActivityDao" %>
 <%@ page import = "dto.BoardQnA"%>
 <%@ page import = "dto.BoardQnAComment"%>
@@ -44,13 +44,13 @@
 	BoardQnA boardQnA = new BoardQnA();
 	boardQnA.setBoardQnANumber(boardQnANumber);
 	boardQnA = boardQnADao.selectBoardQnA(boardQnA);
-	BoardQnACommentdDao boardQnACommentdDao = new BoardQnACommentdDao();
+	BoardQnACommentDao boardQnACommentDao = new BoardQnACommentDao();
 	BoardQnAComment boardQnAComment = new BoardQnAComment();
 	boardQnAComment.setBoardQnANumber(boardQnANumber);
-	ArrayList<BoardQnAComment> boardQnACommentList = boardQnACommentdDao.selectBoardQnAComment(boardQnAComment);
+	ArrayList<BoardQnAComment> boardQnACommentList = boardQnACommentDao.selectBoardQnAComment(boardQnAComment);
 	String memberId = request.getParameter("memberId");
 	if(memberId != null && !memberId.equals("")){
-		boardQnACommentdDao.updateBoardQnAComment(memberId);
+		boardQnACommentDao.updateBoardQnAComment(memberId);
 		Activity activity = new Activity();
 		activity.setMemberId(memberId);
 		ActivityDao activityDao = new ActivityDao();
