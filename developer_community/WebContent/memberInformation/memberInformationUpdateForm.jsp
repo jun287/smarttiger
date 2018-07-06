@@ -25,7 +25,6 @@
 		MemberDao memberDao = new MemberDao();
 		Member member = memberDao.memberInformationSelect(sessionId);
 		
-		
 	%>
 		<div id="jb-container">
 			<%@ include file="/module/header.jsp"%>
