@@ -16,10 +16,15 @@
 		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
 	}
 	BoardQnACommentDao boardQnACommentDao = new BoardQnACommentDao();
-	boardQnACommentDao.insertBoardQnAComment(boardQnAComment);
-	ActivityDao activityDao = new ActivityDao();
-	activity=activityDao.selectActivity(activity);
-	activityDao.answerFromUpdateActivity(activity);
+	int countBoardQnAComment = boardQnACommentDao.countBoardQnAComment(boardQnAComment);
+	if(countBoardQnAComment == 0){							// 답글 입력 제한(1개이상 금지);
+		boardQnACommentDao.insertBoardQnAComment(boardQnAComment);
+		ActivityDao activityDao = new ActivityDao();
+		activity=activityDao.selectActivity(activity);
+		activityDao.answerFromUpdateActivity(activity);	
+	}else{
+		System.out.println("해당글에 작성된 답글이 1개 이상임.");
+	}
 	response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAView.jsp?boardQnANumber="+boardQnAComment.getBoardQnANumber());
 	//답변글로 이동
 %>

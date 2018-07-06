@@ -1,3 +1,4 @@
+// 28기 이원상 2018. 7. 6(금) BoardQnACommentDao.java
 package dao;
 
 import java.sql.Connection;
@@ -120,5 +121,30 @@ public class BoardQnACommentDao {
 		boardQnAComment.setChoose(resultSet.getString(6));
 		}
 		return boardQnAComment;
+	}
+	
+	/*
+	메소드 설명	
+	1. 용도 : 1개의 QnA게시판 글에 한명이 작성한 답글의 수를 조회(DB BoardQnA_comment테이블 조회)
+	2. 매개변수 : BoardQnAComment boardQnAComment
+	3. 리턴값 : int countBoardQnAComment
+	4. BoardQnAComment Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnACommentNumber, int boardQnANumber, String memberId,	String boardqnaCommentContent, String boardqnaCommentDate
+		String choose;
+	*/
+	public int countBoardQnAComment(BoardQnAComment boardQnAComment) throws ClassNotFoundException, SQLException{
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "select count(boardqna_comment_no) as count from boardqna_comment where boardqna_no=? and member_id=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, boardQnAComment.getBoardQnANumber());
+		preparedStatement.setString(2, boardQnAComment.getMemberId());
+		resultSet = preparedStatement.executeQuery();
+		int countBoardQnAComment = 0;
+		if(resultSet.next()){
+			countBoardQnAComment =  resultSet.getInt(1);
+		}
+		return countBoardQnAComment;
 	}
 }
