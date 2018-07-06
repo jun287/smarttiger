@@ -33,12 +33,10 @@
 	<body>
 		<div id="jb-container">
 		<%@include file="/module/header.jsp" %>
+		<%@ include file="/module/sidebar.jsp" %>
 			<div id="jb-content">
 <%
 	request.setCharacterEncoding("EUC-KR");
-	String sessionId = (String)session.getAttribute("sessionId");
-	String sessionLevel = (String)session.getAttribute("sessionLevel");
-	String sessionName = (String)session.getAttribute("sessionName");
 	int boardQnANumber = Integer.parseInt(request.getParameter("boardQnANumber"));
 	BoardQnADao boardQnADao = new BoardQnADao();
 	BoardQnA boardQnA = new BoardQnA();
@@ -92,7 +90,7 @@
 				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
 <%		
 	}else{
-		boardQnADao.updateBoardQnA(boardQnA);			// 조회수 증가 메소드, 본인이 아닌 타인이 읽었을때만 적용
+		boardQnADao.updateHitsBoardQnA(boardQnA);			// 조회수 증가 메소드, 본인이 아닌 타인이 읽었을때만 적용
 %>
 				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnACommentWriteForm.jsp?boardQnANumber=<%=boardQnA.getBoardQnANumber()%>">| 답글작성 | </a></div>
 				<div style="float:right;"><a href="<%=request.getContextPath()%>/boardQnA/boardQnAList.jsp">| 목록으로 | </a></div>
@@ -100,14 +98,16 @@
 	}for(int i=0; i<boardQnACommentList.size(); i++){
 		boardQnAComment = boardQnACommentList.get(i);
 %>				
-
+		
 			
 				<div class="clear" id="QnACommentContent">
 					<span><%=boardQnAComment.getMemberId() %>님의 답변 내용</span><br>
 					<%=boardQnAComment.getBoardqnaCommentDate() %><br>
 					<%=boardQnAComment.getBoardqnaCommentContent() %><br>
-<%
-		if(sessionId.equals(boardQnA.getMemberId()) && boardQnAComment.getChoose().equals("N")){			// 질문작성자만 답변 채택 가능함.
+<% 
+		if(sessionId == null){
+			System.out.println("로그인을 하지 않은 상태");
+		}else if(sessionId.equals(boardQnA.getMemberId()) && boardQnAComment.getChoose().equals("N")){			// 질문작성자만 답변 채택 가능함.
 %>					
 					<form action="<%=request.getContextPath() %>/boardQnA/boardQnAView.jsp?boardQnANumber=<%=boardQnAComment.getBoardQnANumber()%>">
 						<input type="image" src="<%=request.getContextPath() %>/img/choose.png">

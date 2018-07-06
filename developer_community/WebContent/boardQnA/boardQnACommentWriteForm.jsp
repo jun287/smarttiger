@@ -29,12 +29,13 @@
 	<body>
 		<div id="jb-container">
 		<%@include file="/module/header.jsp" %>
+		<%@ include file="/module/sidebar.jsp" %>
 			<div id="jb-content">
 <%
 	request.setCharacterEncoding("EUC-KR");
-	String sessionId = (String)session.getAttribute("sessionId");
-	String sessionLevel = (String)session.getAttribute("sessionLevel");
-	String sessionName = (String)session.getAttribute("sessionName");
+	if(sessionId == null){
+		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
+	}
 	int boardQnANumber = Integer.parseInt(request.getParameter("boardQnANumber"));
 	BoardQnADao boardQnADao = new BoardQnADao();
 	BoardQnA boardQnA = new BoardQnA();

@@ -7,11 +7,11 @@
 <%@ page import = "dto.BoardQnAComment"%>
 <%@ page import = "dto.Activity"%>
 <%
+	request.setCharacterEncoding("euc-kr");
 	String sessionId = (String)session.getAttribute("sessionId");
 	String sessionLevel = (String)session.getAttribute("sessionLevel");
 	String sessionName = (String)session.getAttribute("sessionName");
-	
-	request.setCharacterEncoding("euc-kr");
+
 	int boardQnANumber=Integer.parseInt(request.getParameter("boardQnANumber"));
 	System.out.println(boardQnANumber+"<--boardQnANumber");
 	
@@ -35,5 +35,7 @@
 		Activity activity = new Activity();
 		activity.setMemberId(boardQnA.getMemberId());
 		activityDao.deleteFromUpdateActivity(activity);
+	}else if(!sessionId.equals(boardQnA.getMemberId())){
+		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
 	}
 %>	

@@ -1,14 +1,6 @@
 <!-- 28기 이원상 2018. 7. 4(수) boardQnAWriteForm.jsp -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%
-	request.setCharacterEncoding("EUC-KR");
-	String sessionId = (String)session.getAttribute("sessionId");
-	String sessionLevel = (String)session.getAttribute("sessionLevel");
-	String sessionName = (String)session.getAttribute("sessionName");
-	if(sessionId == null){
-		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
-	}
-%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,6 +10,13 @@
 	<body>
 		<div id="jb-container">
 		<%@include file="/module/header.jsp" %>
+		<%@ include file="/module/sidebar.jsp" %>
+<%
+	request.setCharacterEncoding("EUC-KR");
+	if(sessionId == null){
+		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAList.jsp");
+	}
+%>		
 			<div id="jb-content">		
 				<div>
 					<form action="<%=request.getContextPath()%>/boardQnA/boardQnAWritePro.jsp" method="post">

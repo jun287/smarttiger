@@ -209,7 +209,7 @@ public class BoardQnADao {
 		int boardQnANumber, String memberId, String boardQnAtitle, String boardQnAContent, String boardQnADate
 		int boardQnAhits, String boardQnACategory
 	*/
-	public void updateBoardQnA(BoardQnA boardQnA) throws ClassNotFoundException, SQLException {
+	public void updateHitsBoardQnA(BoardQnA boardQnA) throws ClassNotFoundException, SQLException {
 		DriverDB driverDB = new DriverDB();
 		connection = driverDB.drivercon();
 		sql = "UPDATE boardqna SET hits=? WHERE boardqna_no=?";
@@ -242,5 +242,27 @@ public class BoardQnADao {
 		connection.close();
 	}
 
-	
+	/*
+	메소드 설명	
+	1. 용도 : QnA게시판글을 수정하는 메소드(DB BoardQnA테이블 1개 행 수정)
+	2. 매개변수 : BoardQnA boardQnA(BoardQnA클래스를 통해 생성된 참조값)
+	3. 리턴값 : void
+	4. BoardQnA Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnANumber, String memberId, String boardQnAtitle, String boardQnAContent, String boardQnADate
+		int boardQnAhits, String boardQnACategory
+	*/
+	public void updateBoardQnA(BoardQnA boardQnA) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "UPDATE boardqna SET boardqna_title=?,boardqna_content=?,boardqna_category=? WHERE boardqna_no=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, boardQnA.getBoardQnAtitle());
+		preparedStatement.setString(2, boardQnA.getBoardQnAContent());
+		preparedStatement.setString(3, boardQnA.getBoardQnACategory());
+		preparedStatement.setInt(4, boardQnA.getBoardQnANumber());
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		connection.close();
+	}
 }
