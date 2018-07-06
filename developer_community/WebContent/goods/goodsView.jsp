@@ -84,6 +84,8 @@
 	<body>
 		<%
 			String sessionId = (String)session.getAttribute("sessionId");
+			String sessionEmail =(String)session.getAttribute("sessionEmail");
+			
 			String sendCode=request.getParameter("sendCode");
 			System.out.println(sendCode+"<--sendCode");
 			
@@ -116,7 +118,7 @@
 					<div id="userinfo">
 						<span><%=goods.getGoods_title() %></span><br><br>
 						<span><%=goods.getGoods_price() %>원</span><br><br>
-						<span>판매자 정보<%=goods.getGoods_price() %></span><br><br>			
+						<span>판매자 정보<%=sessionEmail %></span><br><br>			
 						<span>거래 방법 안전거래미사용,직접거래</span><br><br>	
 						<span>배송방법  판매자와 직접연락하세요</span><br><br>				
 					</div>

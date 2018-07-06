@@ -30,7 +30,7 @@
 			session.setAttribute("sessionId", member.getId());
 			session.setAttribute("sessionLevel", member.getLevel());
 			session.setAttribute("sessionName", member.getName());
-			session.setAttribute("sessionEmail", member.getEmail());
+			
 	%>
 			<script type="text/javascript">
 				location.href='<%= request.getContextPath()%>/index.jsp';

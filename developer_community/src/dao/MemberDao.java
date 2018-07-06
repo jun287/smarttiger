@@ -77,6 +77,7 @@ public class MemberDao {
 			member.setId(resultSet.getString("id"));
 			member.setLevel(resultSet.getString("level"));
 			member.setName(resultSet.getString("name"));
+			
 		}
 
 		statement.close();

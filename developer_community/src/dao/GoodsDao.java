@@ -93,6 +93,7 @@ public class GoodsDao {
 		}
 		return goods;
 	}
+	//상품정보 업데이트
 	public void updateGoods(Goods goods) throws ClassNotFoundException, SQLException {
 		System.out.print("updateGoods");
 		
@@ -112,6 +113,7 @@ public class GoodsDao {
 		
 		statement.executeUpdate();
 	}
+	//상품정보 삭제
 	public void deleteGoods(String goodscode) throws ClassNotFoundException, SQLException {
 		System.out.println("deleteGoods");
 		
