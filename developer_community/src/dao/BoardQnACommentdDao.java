@@ -37,6 +37,16 @@ public class BoardQnACommentdDao {
 		connection.close();
 	}
 	
+	/*
+	메소드 설명	
+	1. 용도 : 한 개의 QnA게시판 글에 답글을 리스트로 조회(DB BoardQnA_comment테이블 boardqna_no의 특정데이터 행 조회)
+	2. 매개변수 : BoardQnAComment boardQnAComment(BoardQnAComment클래스를 통해 생성된 boardQnAComment객체의 참조값)
+	3. 리턴값 : ArrayList<BoardQnAComment>(BoardQnAComment를 통해 생성된 객체의 참조값을 담은 리스트)
+	4. BoardQnAComment Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnACommentNumber, int boardQnANumber, String memberId,	String boardqnaCommentContent, String boardqnaCommentDate
+		String choose;
+	*/
 	public ArrayList<BoardQnAComment> selectBoardQnAComment(BoardQnAComment boardQnAComment) throws ClassNotFoundException, SQLException{
 		ArrayList<BoardQnAComment> boardQnACommentList = new ArrayList<>();
 		DriverDB driverDB = new DriverDB();
@@ -60,5 +70,26 @@ public class BoardQnACommentdDao {
 		connection.close();
 		return boardQnACommentList;
 		
+	}
+	
+	/*
+	메소드 설명	
+	1. 용도 : 1개의 QnA게시판 글에 답글이 채택시 채택여부 update(DB BoardQnA_comment테이블 choose컬럼 수정)
+	2. 매개변수 : String memberId(답글작성한 사용자의 Id)
+	3. 리턴값 : void
+	4. BoardQnAComment Class 프로퍼티
+		- 접근지정자는 모두 private임. 
+		int boardQnACommentNumber, int boardQnANumber, String memberId,	String boardqnaCommentContent, String boardqnaCommentDate
+		String choose;
+	*/
+	public void updateBoardQnAComment(String memberId) throws ClassNotFoundException, SQLException {
+		DriverDB driverDB = new DriverDB();
+		connection = driverDB.drivercon();
+		sql = "UPDATE boardqna_comment	SET choose='Y'	WHERE member_id=?";
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, memberId);
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		connection.close();
 	}
 }

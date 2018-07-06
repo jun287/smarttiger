@@ -3,8 +3,10 @@
 <%@ page import = "java.util.ArrayList"%>
 <%@ page import = "dao.BoardQnADao"%>
 <%@ page import = "dao.BoardQnACommentdDao"%>
+<%@ page import = "dao.ActivityDao" %>
 <%@ page import = "dto.BoardQnA"%>
 <%@ page import = "dto.BoardQnAComment"%>
+<%@ page import = "dto.Activity" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,6 +48,15 @@
 	BoardQnAComment boardQnAComment = new BoardQnAComment();
 	boardQnAComment.setBoardQnANumber(boardQnANumber);
 	ArrayList<BoardQnAComment> boardQnACommentList = boardQnACommentdDao.selectBoardQnAComment(boardQnAComment);
+	String memberId = request.getParameter("memberId");
+	if(memberId != null && !memberId.equals("")){
+		boardQnACommentdDao.updateBoardQnAComment(memberId);
+		Activity activity = new Activity();
+		activity.setMemberId(memberId);
+		ActivityDao activityDao = new ActivityDao();
+		activityDao.chooseAnswerFromUpdateActivity(activity);
+		response.sendRedirect(request.getContextPath()+"/boardQnA/boardQnAView.jsp?boardQnANumber="+boardQnANumber);
+	}
 %>			
 				<table>
 					<tr>
@@ -95,10 +106,17 @@
 					<span><%=boardQnAComment.getMemberId() %>님의 답변 내용</span><br>
 					<%=boardQnAComment.getBoardqnaCommentDate() %><br>
 					<%=boardQnAComment.getBoardqnaCommentContent() %><br>
-					<form>
+<%
+		if(sessionId.equals(boardQnA.getMemberId()) && boardQnAComment.getChoose().equals("N")){			// 질문작성자만 답변 채택 가능함.
+%>					
+					<form action="<%=request.getContextPath() %>/boardQnA/boardQnAView.jsp?boardQnANumber=<%=boardQnAComment.getBoardQnANumber()%>">
 						<input type="image" src="<%=request.getContextPath() %>/img/choose.png">
 						<input type="hidden" name="memberId" value="<%=boardQnAComment.getMemberId() %>">
+						<input type="hidden" name="boardQnANumber" value="<%=boardQnAComment.getBoardQnANumber()%>">
 					</form>
+<%
+		}
+%>					
 				</div>
 <%				
 	}
