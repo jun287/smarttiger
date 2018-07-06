@@ -9,7 +9,13 @@ public class Goods {
 	private String goods_info;
 	private String goods_date;
 	private String goods_img;
-	
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getGoods_code() {
 		return goods_code;
 	}

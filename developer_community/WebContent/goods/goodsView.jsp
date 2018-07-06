@@ -1,6 +1,8 @@
+<%@page import="dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dao.GoodsDao" %>
 <%@ page import="dto.Goods" %>
+
 <%@ page import="java.util.ArrayList" %>
 <% request.setCharacterEncoding("euckr"); %>
 <!DOCTYPE html>
@@ -62,7 +64,7 @@
 			#userinfo{
 				margin:20px 10px 10px 0;
 				border-radius:5px;
-				
+				font-size:15px;
 				float:right;
 				width: 380px;
 				height: 400px;
@@ -89,11 +91,18 @@
 			String sendCode=request.getParameter("sendCode");
 			System.out.println(sendCode+"<--sendCode");
 			
+			
+			
+			
+			
+			
+		
 			GoodsDao GoodsDao=new GoodsDao();
 			Goods goods=GoodsDao.selectGoods(sendCode);
 			
 			System.out.println(goods.getGoods_code()+"<--goods.getGoods_code()");
 			System.out.println(goods.getId()+"<--goods.getId()");
+			System.out.println(goods.getEmail()+"<--goods.getEmail()");
 			System.out.println(goods.getGoods_title()+"<--goods.getGoods_title()");
 			System.out.println(goods.getGoods_price()+"<--goods.getGoods_price()");
 			System.out.println(goods.getGoods_info()+"<--goods.getGoods_info()");
@@ -118,8 +127,9 @@
 					<div id="userinfo">
 						<span><%=goods.getGoods_title() %></span><br><br>
 						<span><%=goods.getGoods_price() %>원</span><br><br>
-						<span>판매자 정보<%=sessionEmail %></span><br><br>			
-						<span>거래 방법 안전거래미사용,직접거래</span><br><br>	
+						<span>판매자 정보&nbsp;&nbsp;<%=goods.getEmail() %></span><br><br>			
+						<span>거래 방법 안전거래미사용</span><br>	
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;직접거래</span><br><br>		
 						<span>배송방법  판매자와 직접연락하세요</span><br><br>				
 					</div>
 					<div id="goodsInfo">
